@@ -7,7 +7,7 @@
   <meta name="description" content="スタジオ灯唯世（Studio HIYUSE）は、東京・秋葉原を拠点とするゲームスタジオです。物語演出とAI技術を融合し、独自の世界観をもつ作品を開発しています。">
   <style>
     :root {
-      --main-bg: rgba(250,250,250,0.8); /* 半透明背景に変更 */
+      --main-bg: rgba(250,250,250,0.8); /* 半透明背景 */
       --accent: #3451ff;
       --text-dark: #111;
       --text-light: #555;
@@ -42,7 +42,7 @@
 
     /* 左上ロゴを大きく */
     .logo img {
-      height: 52px; /* ←ここでサイズ調整（28→52） */
+      height: 52px;
       vertical-align: middle;
       transition: transform 0.2s ease;
     }
@@ -231,4 +231,135 @@
 
     @media (max-width: 768px) {
       .hero {
-        height:
+        height: 50vh;
+      }
+      .main-content {
+        padding-top: 50vh;
+      }
+      .logo img {
+        height: 42px;
+      }
+      nav ul {
+        font-size: 0.8rem;
+        gap: 0.6rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="logo.png" alt="Studio HIYUSE ロゴ">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">会社概要</a></li>
+        <li><a href="#message">代表挨拶</a></li>
+        <li><a href="#team">メンバー</a></li>
+        <li><a href="#projects">開発実績</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== 固定ヒーロー部分 ===== -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <img src="logo.png" alt="Studio HIYUSE ロゴ" class="hero-logo">
+    <p>
+      東京・秋葉原を拠点とし、AI技術と演出美学を融合した作品を開発するゲームスタジオ。<br>
+      オープンワールド・ストーリーアドベンチャーを中心に、<br>
+      強い没入体験を届けていきます。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 以下がスクロールする部分 ===== -->
+<main class="main-content">
+
+<section id="about">
+  <h2>会社概要</h2>
+  <p>スタジオ灯唯世（Studio HIYUSE）は、物語体験と技術の融合をテーマに活動するゲーム開発スタジオです。<br>
+  『雪月花（仮）』をはじめ複数の新規プロジェクトを開発中です。</p>
+  <div class="company-info">
+    <p><strong>会社名：</strong>スタジオ灯唯世（Studio HIYUSE）</p>
+    <p><strong>所在地：</strong>東京都千代田区（秋葉原エリア）</p>
+    <p><strong>事業内容：</strong>ゲーム開発／映像・音楽制作／AIシステム研究</p>
+    <p><strong>設立：</strong>2025年（予定・仮）</p>
+    <p><strong>代表：</strong>（代表者名）</p>
+  </div>
+</section>
+
+<section id="message">
+  <h2>代表挨拶</h2>
+  <p>
+    「遊び」と「感情」をどこまで設計できるか。<br>
+    その問いを軸に、私たちは作品づくりを続けています。<br><br>
+    どんなに技術が進化しても、心を動かすのは人の手による“温度”です。<br>
+    灯唯世という名前には、「一瞬の光を、唯一の世に」という願いを込めました。<br>
+    これからも、見る人・遊ぶ人の心に灯る作品をお届けしていきます。<br><br>
+    ― 代表（氏名）
+  </p>
+</section>
+
+<section id="team">
+  <h2>メンバー紹介</h2>
+  <div class="team-grid">
+    <div class="member"><img src="member1.png" alt=""><h3>氏名A</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member2.png" alt=""><h3>氏名B</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member3.png" alt=""><h3>氏名C</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member4.png" alt=""><h3>氏名D</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member5.png" alt=""><h3>氏名E</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member6.png" alt=""><h3>氏名F</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member7.png" alt=""><h3>氏名G</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member8.png" alt=""><h3>氏名H</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member9.png" alt=""><h3>氏名I</h3><p>役職・担当</p></div>
+    <div class="member"><img src="member10.png" alt=""><h3>氏名J</h3><p>役職・担当</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>開発実績・プロジェクト</h2>
+  <p>
+    現在、オープンワールド・ストーリーアドベンチャー『雪月花（仮）』を中心に開発中です。<br>
+    その他、AIを活用したゲーム内演出制御システムなど、独自技術の研究開発も進行しています。<br>
+    いくつかの未発表タイトルについては、準備が整い次第順次発表予定です。
+  </p>
+</section>
+
+<section id="contact">
+  <h2>お問い合わせ</h2>
+  <div class="contact">
+    <p>投資・パートナーシップ・採用に関するご連絡は、以下までお願いいたします。<br><br>
+      📩 <a href="mailto:info@hiyuse-studio.com">info@hiyuse-studio.com</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2025 スタジオ灯唯世 / Studio HIYUSE. All Rights Reserved.
+</footer>
+
+<button id="backToTop" aria-label="ページ上部へ戻る">↑</button>
+<script>
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) backToTop.classList.add('show');
+    else backToTop.classList.remove('show');
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
