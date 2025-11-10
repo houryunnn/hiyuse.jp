@@ -7,7 +7,7 @@
   <meta name="description" content="スタジオ灯唯世（Studio HIYUSE）は、東京・秋葉原を拠点とするゲームスタジオです。物語演出とAI技術を融合し、独自の世界観をもつ作品を開発しています。">
   <style>
     :root {
-      --main-bg: rgba(250,250,250,0.8); /* 半透明背景 */
+      --main-bg: rgba(250,250,250,0.9); /* 下のスクロール領域の背景 */
       --accent: #3451ff;
       --text-dark: #111;
       --text-light: #555;
@@ -17,18 +17,17 @@
 
     body {
       margin: 0;
-      background: var(--main-bg);
+      background: #000; /* 背景はヒーロー画像が基本になるので黒でOK */
       color: var(--text-dark);
       line-height: 1.7;
     }
 
     header {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border-bottom: 1px solid #eaeaea;
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(8px);
     }
 
     .nav-inner {
@@ -40,7 +39,6 @@
       padding: 0.8rem 1rem;
     }
 
-    /* 左上ロゴを大きく */
     .logo img {
       height: 52px;
       vertical-align: middle;
@@ -69,60 +67,35 @@
       color: var(--accent);
     }
 
-    /* ===== ヒーローセクション固定 ===== */
+    /* ===== ヒーロー：一枚絵だけ固定、ぼかしなし ===== */
     .hero {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      color: #fff;
+      height: 60vh; /* ヒーローの高さ。増やしたければ 70vh などに */
       background-image: url("hero-bg.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.35);
-      z-index: 1;
+      /* 文字もロゴも乗せないので中身なし */
+      z-index: 10; /* 下のコンテンツよりも上に置く */
     }
 
-    .hero-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      z-index: 2;
-    }
-
-    /* ヒーロー内ロゴ */
-    .hero-logo {
-      max-width: 300px;
-      width: 60%;
-      height: auto;
-      margin: 0 auto 1.5rem;
-      display: block;
-    }
-
-    .hero p {
-      color: #e5e9ff;
-      font-size: 1rem;
-    }
-
-    /* ===== メインコンテンツ ===== */
+    /* ===== メインコンテンツ：ヒーローの下だけスクロール ===== */
     .main-content {
       position: relative;
-      z-index: 10;
-      padding-top: 60vh; /* heroと同じ高さで押し下げ */
+      z-index: 1;
+      margin-top: 60vh;          /* ヒーローの高さと合わせる */
       background: var(--main-bg);
-      backdrop-filter: blur(6px);
     }
 
     section {
       max-width: 1080px;
       margin: 0 auto;
       padding: 4rem 1rem;
+      background: transparent;
+      scroll-margin-top: 80px;   /* ナビで飛んだときヘッダーに隠れないように */
     }
 
     h1, h2 {
@@ -166,15 +139,14 @@
     }
 
     .company-info {
-      background: rgba(247,247,247,0.9);
+      background: rgba(247,247,247,0.95);
       border-radius: 8px;
       padding: 1.5rem;
       font-size: 0.95rem;
-      backdrop-filter: blur(4px);
     }
 
     .contact {
-      background: rgba(243,246,255,0.85);
+      background: rgba(243,246,255,0.95);
       border-radius: 8px;
       padding: 1.5rem;
     }
@@ -195,8 +167,7 @@
       color: #777;
       padding: 2rem 0;
       border-top: 1px solid #eaeaea;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.95);
     }
 
     #backToTop {
@@ -216,7 +187,7 @@
       opacity: 0;
       transform: translateY(8px);
       transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 20;
+      z-index: 200;
     }
 
     #backToTop.show {
@@ -234,7 +205,7 @@
         height: 50vh;
       }
       .main-content {
-        padding-top: 50vh;
+        margin-top: 50vh;
       }
       .logo img {
         height: 42px;
@@ -271,24 +242,16 @@
   </div>
 </header>
 
-<!-- ===== 固定ヒーロー部分 ===== -->
-<section class="hero" id="top">
-  <div class="hero-inner">
-    <img src="logo.png" alt="Studio HIYUSE ロゴ" class="hero-logo">
-    <p>
-      東京・秋葉原を拠点とし、AI技術と演出美学を融合した作品を開発するゲームスタジオ。<br>
-      オープンワールドを中心に、強い没入体験を届けていきます。
-    </p>
-  </div>
-</section>
+<!-- ===== ヒーロー：背景画像だけ（ロゴも文字もなし） ===== -->
+<section class="hero" id="top"></section>
 
-<!-- ===== 以下がスクロールする部分 ===== -->
+<!-- ===== ここから下だけスクロール ===== -->
 <main class="main-content">
 
 <section id="about">
   <h2>会社概要</h2>
   <p>スタジオ灯唯世（Studio HIYUSE）は、物語体験と技術の融合をテーマに活動するゲーム開発スタジオです。<br>
-  複数の新規プロジェクトを開発中です。</p>
+  『雪月花（仮）』をはじめ複数の新規プロジェクトを開発中です。</p>
   <div class="company-info">
     <p><strong>会社名：</strong>スタジオ灯唯世（Studio HIYUSE）</p>
     <p><strong>所在地：</strong>東京都千代田区（秋葉原エリア）</p>
@@ -304,7 +267,7 @@
     「遊び」と「感情」をどこまで設計できるか。<br>
     その問いを軸に、私たちは作品づくりを続けています。<br><br>
     どんなに技術が進化しても、心を動かすのは人の手による“温度”です。<br>
-    灯唯世という名前には、「　　」という願いを込めました。<br>
+    灯唯世という名前には、「一瞬の光を、唯一の世に」という願いを込めました。<br>
     これからも、見る人・遊ぶ人の心に灯る作品をお届けしていきます。<br><br>
     ― 代表（氏名）
   </p>
@@ -329,7 +292,7 @@
 <section id="projects">
   <h2>開発実績・プロジェクト</h2>
   <p>
-    現在、オープンワールドを中心に開発中です。<br>
+    現在、オープンワールド・ストーリーアドベンチャー『雪月花（仮）』を中心に開発中です。<br>
     その他、AIを活用したゲーム内演出制御システムなど、独自技術の研究開発も進行しています。<br>
     いくつかの未発表タイトルについては、準備が整い次第順次発表予定です。
   </p>
@@ -351,15 +314,4 @@
 
 <button id="backToTop" aria-label="ページ上部へ戻る">↑</button>
 <script>
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) backToTop.classList.add('show');
-    else backToTop.classList.remove('show');
-  });
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
-</body>
-</html>
-
+  const backToTop
