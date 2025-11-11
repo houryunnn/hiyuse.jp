@@ -96,38 +96,25 @@
       width: 100%;
     }
 
-    /* ===== ヒーロー：スライドショー（hero-bg1〜3） ===== */
-    .hero {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 30vh; /* ここで高さ調整 */
-      overflow: hidden;
-      z-index: 10;
-      background: #000; /* 読み込み前のバックアップ色 */
-    }
+/* ===== ヒーロー：スライドショー（hero-bg1〜3） ===== */
+.hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 30vh; /* 高さ */
+  overflow: hidden;
+  z-index: 5; /* ←ここを変更（元は10） */
+  background: #000;
+}
 
-    .hero-slideshow {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .hero-slideshow img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 2s ease;
-    }
-
-    .hero-slideshow img.active {
-      opacity: 1;
-    }
+.main-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 32vh;
+  background: transparent; /* 背景を透明にすることで画像が見える */
+}
 
     /* 少しだけ光のベールを追加（控えめ） */
     .hero::after {
@@ -552,3 +539,4 @@
 
 </body>
 </html>
+
