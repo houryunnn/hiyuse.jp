@@ -17,7 +17,7 @@
 
     body {
       margin: 0;
-      background: #000;
+      background: #e0e0e0;  /* 黒→グレーに変更（黒帯対策） */
       color: var(--text-dark);
       line-height: 1.7;
     }
@@ -68,18 +68,19 @@
       color: var(--accent);
     }
 
-    /* ===== ヒーロー：画面幅いっぱい ===== */
+    /* ===== ヒーロー：画面幅いっぱい・高さ30vh ===== */
     .hero {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;              /* 画面幅にフィット */
-      height: 30vh;              /* （30vh） */
+      right: 0;               /* ここで左右いっぱいに広げる */
+      width: 100%;
+      height: 30vh;
       background-image: url("hero-bg.jpg");
-      background-size: cover;    /* 縦横比維持しつつ全幅 */
+      background-size: cover; /* 要素全体をカバー */
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
+      /* 背景固定は position:fixed で足りているので attachment は外す */
       z-index: 10;
     }
 
@@ -87,7 +88,7 @@
     .main-content {
       position: relative;
       z-index: 1;
-      margin-top: 30vh;          /* ヒーローと同じ高さ */
+      margin-top: 30vh;          /* ヒーローと同じ高さだけ押し下げ */
       background: var(--main-bg);
     }
 
