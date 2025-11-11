@@ -328,7 +328,32 @@
 
 <button id="backToTop" aria-label="ページ上部へ戻る">↑</button>
 <script>
-  // トップに戻るボタン
+  // ▼ ナビクリックで「セクションの頭」を画面中央付近にスクロール
+  const header = document.querySelector('header');
+
+  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const id = link.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      const headerHeight = header ? header.offsetHeight : 0;
+      const viewportHeight = window.innerHeight;
+
+      // セクションの先頭を「画面中央 − ヘッダー半分」くらいに合わせる
+      const targetTop = target.getBoundingClientRect().top + window.scrollY;
+      const scrollToY = targetTop - (viewportHeight / 2) + (headerHeight / 2);
+
+      window.scrollTo({
+        top: scrollToY,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // ▼ トップに戻るボタン
   const backToTop = document.getElementById('backToTop');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) backToTop.classList.add('show');
@@ -338,7 +363,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // ヒーロースライドショー（hero-bg1 / 2 / 3）
+  // ▼ ヒーロースライドショー（hero-bg1 / 2 / 3）
   const slides = document.querySelectorAll('.hero-slideshow .slide');
   let current = 0;
   if (slides.length > 0) {
@@ -349,8 +374,10 @@
     }, 7000); // 7秒ごとに切り替え
   }
 </script>
+
 </body>
 </html>
+
 
 
 
