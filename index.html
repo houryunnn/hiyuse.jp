@@ -15,34 +15,20 @@
 
   <style>
     :root{
-      --clr-bg:#ffffff;
-      --clr-fg:#0b0f14;
-      --clr-blue:#9DFF00;        /* テーマカラー（緑寄りの青指定） */
-      --clr-blue-ink:#0a2e66;
-      --clr-accent:#00c2ff;
-      --clr-muted:#6b7785;
-      --radius:14px;
-      --radius-sm:10px;
-      --shadow:0 10px 30px rgba(10,46,102,.08);
-      --maxw:1100px;
-
-      /* ヘッダーは常に白にするので、ヘッダーテキスト用色を別変数に */
-      --hdr-bg:#ffffff;
-      --hdr-fg:#0b0f14;
-      --btn-fg:#000000;          /* 送信する の文字色（黒） */
-    }
-
-    /* ダークテーマ（ヘッダーは白のまま） */
-    html[data-theme="dark"]{
+      /* ダーク固定（ヘッダーは白） */
       --clr-bg:#0b0f14;
       --clr-fg:#e7edf6;
       --clr-blue:#9DFF00;
-      --clr-blue-ink:#9fd1ff;
+      --clr-blue-ink:#cfe4ff;
       --clr-accent:#35d4ff;
       --clr-muted:#a6b3c3;
-
-      --hdr-bg:#ffffff;          /* ここは固定で白 */
-      --hdr-fg:#0b0f14;          /* ヘッダーの文字はダークでも黒系 */
+      --radius:14px;
+      --radius-sm:10px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --maxw:1100px;
+      --hdr-bg:#ffffff;
+      --hdr-fg:#0b0f14;
+      --btn-fg:#000000; /* 送信する の文字色（黒） */
     }
 
     *{box-sizing:border-box}
@@ -56,7 +42,7 @@
     a:hover{opacity:.9}
     a:focus, button:focus, input:focus, textarea:focus{outline:2px solid var(--clr-accent);outline-offset:2px}
 
-    /* ヘッダー（常に白） */
+    /* ヘッダー（白固定） */
     header{
       position:sticky;top:0;z-index:100;
       background:var(--hdr-bg);
@@ -65,50 +51,52 @@
     }
     .nav{
       max-width:var(--maxw);margin:0 auto;padding:10px 18px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      display:flex;align-items:center;gap:12px;
     }
     .brand{display:flex;align-items:center;gap:12px}
     .brand img{height:44px;width:auto}
-    .menu{display:flex;gap:18px;align-items:center}
-    .nav a{color:var(--hdr-fg);font-weight:600}
+    .spacer{flex:1}
 
-    /* CTA（ヘッダー内のボタン） */
+    .menu{
+      display:flex;gap:18px;align-items:center;
+    }
+    .menu a{color:var(--hdr-fg);font-weight:600}
     .cta{
-      padding:10px 14px;border-radius:999px;background:var(--clr-blue);color:#0b0f14;  /* 可読性のため文字は濃色 */
-      box-shadow:0 6px 16px rgba(10,91,211,.18);
-      border:1px solid rgba(0,0,0,.06);
+      padding:10px 14px;border-radius:999px;background:var(--clr-blue);color:#0b0f14;
+      box-shadow:0 6px 16px rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.06);
+      font-weight:700;
     }
     .cta:hover{transform:translateY(-1px)}
 
-    /* テーマ切替ボタン */
-    .theme-toggle{
-      display:inline-flex;align-items:center;gap:8px;
-      border:1px solid rgba(0,0,0,.12); background:#fff; color:#0b0f14;
-      padding:8px 12px;border-radius:999px; cursor:pointer; font-weight:600;
-    }
-    html[data-theme="dark"] .theme-toggle{ background:#202a36; color:#e7edf6; border-color:#334256; }
-
-    /* ハンバーガー */
+    /* ハンバーガー（右上） */
     .hamburger{
-      display:none; width:40px; height:40px; border-radius:8px; border:1px solid rgba(0,0,0,.12);
-      background:#fff; color:#0b0f14; align-items:center; justify-content:center; cursor:pointer;
+      margin-left:auto;width:40px;height:40px;border-radius:8px;
+      border:1px solid rgba(0,0,0,.12);
+      background:#fff;color:#0b0f14;
+      display:none;align-items:center;justify-content:center;cursor:pointer;
     }
     .hamburger span{
-      position:relative; width:22px; height:2px; background:#0b0f14; display:block;
+      position:relative;width:22px;height:2px;background:#0b0f14;display:block;border-radius:2px;
     }
     .hamburger span::before,.hamburger span::after{
-      content:""; position:absolute; left:0; width:22px; height:2px; background:#0b0f14;
+      content:"";position:absolute;left:0;width:22px;height:2px;background:#0b0f14;border-radius:2px;
     }
-    .hamburger span::before{ top:-7px }
-    .hamburger span::after{ top:7px }
+    .hamburger span::before{top:-7px}
+    .hamburger span::after{top:7px}
+
     @media (max-width:900px){
-      .menu{ position:absolute; top:64px; left:0; right:0; background:var(--hdr-bg);
-             border-bottom:1px solid rgba(10,46,102,.10); padding:12px 18px; display:none; flex-direction:column; gap:10px; }
-      .menu.open{ display:flex }
-      .hamburger{ display:inline-flex }
+      .hamburger{display:inline-flex}
+      .menu{
+        position:absolute;top:64px;right:18px;left:18px;
+        display:none;flex-direction:column;gap:12px;
+        background:var(--hdr-bg);border:1px solid rgba(0,0,0,.1);
+        border-radius:12px;padding:12px;
+        box-shadow:0 20px 40px rgba(0,0,0,.12);
+      }
+      .menu.open{display:flex}
     }
 
-    /* ヒーロー（スライダー） */
+    /* ヒーロー */
     .hero{position:relative;overflow:hidden;background:#000}
     .slider{position:relative;height:min(55vh,551px);max-height:551px}
     .slide{
@@ -132,38 +120,42 @@
     }
     .btn-primary{
       background:linear-gradient(135deg,var(--clr-blue) 0%, var(--clr-accent) 100%);
-      border:none;box-shadow:0 10px 24px rgba(0,194,255,.22);
-      color:#0b0f14; font-weight:800;
+      border:none;box-shadow:0 10px 24px rgba(0,0,0,.25);
+      color:#0b0f14;font-weight:800;
     }
 
     /* セクション共通 */
     section[id]{scroll-margin-top:80px}
     .section{max-width:var(--maxw);margin:0 auto;padding:56px 18px}
     .section h2{font-size:clamp(20px,3.2vw,28px);color:var(--clr-blue-ink);margin:0 0 14px}
-    html[data-theme="dark"] .section h2{ color:#cfe4ff; }
     .section .lead{color:var(--clr-muted);margin-bottom:24px}
 
-    /* カード・グリッド */
+    /* カード */
     .card{
-      background:#fff;border:1px solid rgba(10,46,102,.08);border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:22px;
-      color:#0b0f14;
+      background:#141b24;border:1px solid #223146;border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:22px;color:var(--clr-fg);
     }
-    html[data-theme="dark"] .card{ background:#141b24; border-color:#223146; color:#e7edf6; }
-
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
-    @media (max-width:880px){.grid-2{grid-template-columns:1fr}}
 
     /* メンバー */
-    .members{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    @media (max-width:1000px){.members{grid-template-columns:repeat(3,1fr)}}
-    @media (max-width:720px){.members{grid-template-columns:repeat(2,1fr)}}
-    .member{
-      background:#fff;border:1px solid rgba(10,46,102,.08);border-radius:var(--radius-sm);
-      box-shadow:var(--shadow);padding:14px;display:flex;gap:12px;align-items:center;
-      color:#0b0f14;
+    .members{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
     }
-    html[data-theme="dark"] .member{ background:#141b24; border-color:#223146; color:#e7edf6; }
+    @media (max-width:1000px){
+      .members{grid-template-columns:repeat(3,1fr);}
+    }
+    @media (max-width:720px){
+      .members{grid-template-columns:repeat(2,1fr);}
+    }
+    @media (max-width:600px){
+      .members{grid-template-columns:1fr;gap:18px;}
+      .member{justify-content:center;text-align:center;flex-direction:column;}
+      .member img{margin:0 auto 8px;}
+      .member .role{text-align:center;}
+    }
+    .member{
+      background:#141b24;border:1px solid #223146;border-radius:var(--radius-sm);
+      box-shadow:var(--shadow);padding:14px;display:flex;gap:12px;align-items:center;color:var(--clr-fg);
+    }
     .member img{
       width:64px;height:64px;border-radius:12px;object-fit:cover;flex:0 0 auto;
       image-rendering:-webkit-optimize-contrast;
@@ -172,16 +164,15 @@
     .member .name{font-weight:700}
     .member .role{color:var(--clr-muted);font-size:.95em}
 
-    /* 開発実績（ギャラリー） */
+    /* 開発実績 */
     .works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media (max-width:900px){.works{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:620px){.works{grid-template-columns:1fr}}
     .work{
-      border-radius:var(--radius-sm);overflow:hidden;border:1px solid rgba(10,46,102,.08);background:#fff;
-      box-shadow:var(--shadow); color:#0b0f14;
+      border-radius:var(--radius-sm);overflow:hidden;border:1px solid #223146;background:#141b24;
+      box-shadow:var(--shadow);color:var(--clr-fg);
     }
-    html[data-theme="dark"] .work{ background:#141b24; border-color:#223146; color:#e7edf6; }
-    .work .thumb{aspect-ratio:16/9;position:relative;background:#eaf3ff}
+    .work .thumb{aspect-ratio:16/9;position:relative;background:#0f151d}
     .work .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .work .body{padding:14px}
     .work .title{font-weight:700}
@@ -189,42 +180,37 @@
 
     /* フォーム */
     form{
-      background:#fff;border:1px solid rgba(10,46,102,.08);border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:18px;max-width:760px;margin:0 auto; color:#0b0f14;
+      background:#141b24;border:1px solid #223146;border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:18px;max-width:760px;margin:0 auto;color:var(--clr-fg);
     }
-    html[data-theme="dark"] form{ background:#141b24; border-color:#223146; color:#e7edf6; }
     label{display:block;font-weight:600;margin:10px 0 6px}
     input,textarea{
-      width:100%;padding:12px 14px;border:1px solid rgba(10,46,102,.18);border-radius:10px;
-      font-size:16px;background:#fbfdff; color:#0b0f14;
-    }
-    html[data-theme="dark"] input, html[data-theme="dark"] textarea{
-      background:#0f151d; border-color:#2a3a50; color:#e7edf6;
+      width:100%;padding:12px 14px;border:1px solid #2a3a50;border-radius:10px;
+      font-size:16px;background:#0f151d;color:var(--clr-fg)
     }
     textarea{min-height:120px;resize:vertical}
     .form-actions{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .form-actions .submit{
-      background:var(--clr-blue); color:var(--btn-fg);  /* ← 送信する の文字を黒に */
-      border:1px solid rgba(0,0,0,.12); border-radius:999px; padding:12px 18px;
-      font-weight:800; cursor:pointer;
+      background:var(--clr-blue);color:var(--btn-fg);
+      border:1px solid rgba(0,0,0,.25);border-radius:999px;padding:12px 18px;
+      font-weight:800;cursor:pointer;
     }
-    .form-actions .submit:hover{ filter:brightness(0.96); transform:translateY(-1px) }
+    .form-actions .submit:hover{filter:brightness(0.96);transform:translateY(-1px)}
     .note{color:var(--clr-muted);font-size:.92em}
 
     /* フッター */
-    footer{margin-top:40px;padding:28px 18px;background:#0a0e14;color:#dbe6ff}
-    html[data-theme="dark"] footer{ background:#05080d; color:#cfe4ff; }
+    footer{margin-top:40px;padding:28px 18px;background:#05080d;color:#cfe4ff}
     .footer-inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .small{font-size:.92em;color:#a8b4c7}
+    .small{font-size:.92em;color:#9fb0c8}
 
-    /* フェードイン（IntersectionObserverで .show を付与） */
-    .reveal{ opacity:0; transform:translateY(18px); filter:blur(2px);
-      transition: opacity .7s ease, transform .7s ease, filter .7s ease; }
-    .reveal.show{ opacity:1; transform:none; filter:none; }
+    /* フェードイン */
+    .reveal{opacity:0;transform:translateY(18px);filter:blur(2px);
+      transition:opacity .7s ease,transform .7s ease,filter .7s ease;}
+    .reveal.show{opacity:1;transform:none;filter:none;}
 
     @media (prefers-reduced-motion:reduce){
-      .slide{transition:none !important}
-      .reveal{ transition:none !important; opacity:1 !important; transform:none !important; filter:none !important; }
+      .slide{transition:none!important}
+      .reveal{transition:none!important;opacity:1!important;transform:none!important;filter:none!important;}
     }
   </style>
 </head>
@@ -232,21 +218,19 @@
   <header>
     <nav class="nav" aria-label="グローバル">
       <div class="brand">
-        <button class="hamburger" id="hamburger" aria-label="メニューを開閉" aria-controls="menu" aria-expanded="false">
-          <span></span>
-        </button>
         <img src="logo.png" alt="スタジオ灯唯世ロゴ">
       </div>
+      <div class="spacer"></div>
+      <button class="hamburger" id="hamburger" aria-label="メニューを開閉" aria-controls="menu" aria-expanded="false">
+        <span></span>
+      </button>
       <div class="menu" id="menu" role="navigation" aria-label="主要メニュー">
         <a href="#about">会社概要</a>
         <a href="#message">代表挨拶</a>
         <a href="#members">メンバー</a>
         <a href="#works">開発実績</a>
         <a class="cta" href="#contact">お問い合わせ</a>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">ライト / ダーク</button>
       </div>
-      <!-- デスクトップ向けテーマ切替（ヘッダー右側） -->
-      <button class="theme-toggle" id="themeToggleDesktop" type="button" aria-pressed="false" style="display:none">ライト / ダーク</button>
     </nav>
   </header>
 
@@ -273,14 +257,10 @@
     <h2>会社概要</h2>
     <p class="lead">「没入できる喜び」と「感情を震わせる」ゲームを、AI技術を織り込むことでどこまで設計できるか。<br>その問いを軸に、私たちは作品づくりを続けています。</p>
     <div class="card reveal">
-      <div class="grid-2">
-        <div>
-          <p><strong>会社名</strong>：スタジオ灯唯世</p>
-          <p><strong>所在地</strong>：東京都千代田区（秋葉原エリア）</p>
-          <p><strong>設立</strong>：2025年（予定）</p>
-          <p><strong>事業内容</strong>：ゲーム開発／映像・音楽制作／AIシステム研究</p>
-        </div>
-      </div>
+      <p><strong>会社名</strong>：スタジオ灯唯世</p>
+      <p><strong>所在地</strong>：東京都千代田区（秋葉原エリア）</p>
+      <p><strong>設立</strong>：2025年（予定）</p>
+      <p><strong>事業内容</strong>：ゲーム開発／映像・音楽制作／AIシステム研究</p>
     </div>
   </section>
 
@@ -423,39 +403,15 @@
   </footer>
 
   <script>
-    // ===== ハンバーガー =====
+    // ===== ハンバーガー（右上） =====
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     hamburger.addEventListener('click', () => {
       const open = menu.classList.toggle('open');
       hamburger.setAttribute('aria-expanded', String(open));
     });
-    // 900px超では常にメニュー表示、800ms後にレイアウト確定
     const mq = window.matchMedia('(max-width:900px)');
     mq.addEventListener('change', () => { menu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); });
-
-    // ===== テーマ切替（ヘッダーは白固定） =====
-    const themeBtns = [document.getElementById('themeToggle'), document.getElementById('themeToggleDesktop')];
-    // デスクトップ側ボタンの表示切替
-    const sizeMQ = window.matchMedia('(min-width:901px)');
-    const swapThemeButton = () => {
-      document.getElementById('themeToggleDesktop').style.display = sizeMQ.matches ? 'inline-flex' : 'none';
-    };
-    swapThemeButton();
-    sizeMQ.addEventListener('change', swapThemeButton);
-
-    const applyTheme = (theme) => {
-      document.documentElement.setAttribute('data-theme', theme);
-      themeBtns.forEach(b => b && b.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false'));
-      localStorage.setItem('theme', theme);
-    };
-    const saved = localStorage.getItem('theme');
-    if(saved === 'dark'){ applyTheme('dark'); }
-
-    themeBtns.forEach(btn => btn && btn.addEventListener('click', ()=>{
-      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    }));
 
     // ===== ヒーロースライダー（フェード） =====
     const slides = Array.from(document.querySelectorAll('.slide'));
@@ -482,7 +438,6 @@
         }
       });
     }, { root:null, rootMargin:'0px 0px -10% 0px', threshold:0.15 });
-
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
     // ===== フォーム送信（JSON POST + A11y通知 + 多重送信防止） =====
