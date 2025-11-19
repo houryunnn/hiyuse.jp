@@ -1,4 +1,4 @@
-// 実行
+// DOT前実行
 document.addEventListener("DOMContentLoaded", () => {
   // ===== HERO スライダー =====
   const heroSlides = Array.from(document.querySelectorAll(".hero-bg__slide"));
