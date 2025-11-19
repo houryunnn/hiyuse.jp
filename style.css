@@ -630,7 +630,7 @@ html.js-ready .section.is-visible {
   color: #c5c5c5;
 }
 
-/* スマホ調整：横幅はそのまま・少しだけ角を丸める */
+/* スマホ調整 */
 @media (max-width: 480px) {
   .contact-card {
     max-width: none;
@@ -642,5 +642,48 @@ html.js-ready .section.is-visible {
   .contact-mail {
     font-size: 16px;
     letter-spacing: 0.08em;
+  }
+}
+/* =========================
+   CONTACT：横一列レイアウト
+========================= */
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap; /* ←PCは1行、スマホ自然に折れる */
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.contact-line__label {
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  opacity: 0.8;
+}
+
+.contact-line__mail {
+  font-weight: 600;
+  font-size: 20px;      /* ←メール部分 */
+  letter-spacing: 0.1em;
+}
+
+.contact-line__note {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* スマホでだけ自然に折り返す */
+@media (max-width: 480px) {
+  .contact-line {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .contact-line__mail {
+    font-size: 17px;
   }
 }
