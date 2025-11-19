@@ -204,7 +204,7 @@ html.js-ready .section.is-visible {
 .copyright-rail {
   position: fixed;
   left: 16px;
-  top: 50%;
+  top: 60%;
   transform: translateY(-50%) rotate(-90deg);
   transform-origin: left center;
   font-size: 10px;
