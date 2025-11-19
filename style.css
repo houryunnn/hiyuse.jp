@@ -614,7 +614,7 @@ html.js-ready .section.is-visible {
 /* 横一列レイアウト */
 .contact-line {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   gap: 18px;
   flex-wrap: wrap; /* PCは1行、スマホだけ自然に折れる */
