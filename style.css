@@ -74,7 +74,7 @@ main {
 }
 
 /* =========================
-   dotMP風 UIフレーム
+  UIフレーム
 ========================= */
 
 /* MENUボタン 左上 */
@@ -189,7 +189,7 @@ main {
 /* コピーライト：左真ん中、少し内側に */
 .copyright-rail {
   position: fixed;
-  left: 40px;
+  left: 6px;
   top: 50%;
   right: auto;
   transform: translateY(-50%) rotate(-90deg);
