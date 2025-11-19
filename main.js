@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // フェードイン
+  document.documentElement.classList.add("js-ready");
+
   // ==============================
   // HERO スライダー
   // ==============================
@@ -22,10 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
       heroSlides[heroIndex].classList.add("is-active");
     };
 
-    // 最初：パラパラ
     sliderTimer = setInterval(switchFast, FAST_INTERVAL);
 
-    // 一定時間後：ゆっくり
     setTimeout(() => {
       clearInterval(sliderTimer);
       sliderTimer = setInterval(switchNormal, NORMAL_INTERVAL);
@@ -52,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (navTrigger) navTrigger.addEventListener("click", openNav);
   if (overlayClose) overlayClose.addEventListener("click", closeNav);
 
-  // メニュー内リンクで自動クローズ
   if (overlayNav) {
     overlayNav.addEventListener("click", (e) => {
       if (e.target.matches(".overlay-nav__list a")) {
@@ -73,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==============================
   // セクション フェードイン
-  // （上から＋ワンテンポ遅れ＋セクションごとにディレイ）
   // ==============================
   const sections = Array.from(document.querySelectorAll(".section"));
 
@@ -86,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const el = entry.target;
           const index = sections.indexOf(el);
 
-          const baseDelay = 0.2; // 全体のワンテンポ
-          const perSection = 0.12; // セクションごとの差
+          const baseDelay = 0.2;
+          const perSection = 0.12;
 
           el.style.transitionDelay = `${baseDelay + perSection * index}s`;
           el.classList.add("is-visible");
