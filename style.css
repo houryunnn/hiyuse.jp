@@ -1,11 +1,14 @@
-/* ======== Base ======== */
+/* =========================
+   Base
+========================= */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -18,13 +21,17 @@ body {
   line-height: 1.6;
 }
 
-/* アンカーのデフォルト */
 a {
   color: inherit;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
+}
+
+main {
+  background: #fff;
 }
 
 /* セクション共通 */
@@ -45,7 +52,7 @@ a:hover {
   color: #555;
 }
 
-/* Cards & grid */
+/* カード & グリッド */
 .card {
   background: #fff;
   border-radius: 14px;
@@ -59,15 +66,18 @@ a:hover {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
 }
+
 @media (max-width: 768px) {
   .grid-2 {
     grid-template-columns: 1fr;
   }
 }
 
-/* ======== UIフレーム ======== */
+/* =========================
+  UIフレーム
+========================= */
 
-/* MENUボタン */
+/* MENUボタン 左上 */
 .nav-trigger {
   position: fixed;
   top: 18px;
@@ -94,7 +104,7 @@ a:hover {
   margin-top: 2px;
 }
 
-/* 右側縦UI */
+/* 右側コンテナ（今は閉じるボタンだけ） */
 .side-controls {
   position: fixed;
   top: 18px;
@@ -112,19 +122,17 @@ a:hover {
   pointer-events: auto;
 }
 
-/* 上の × はとりあえず非表示（用途がなければ） */
+/* 上の×ボタンは今は非表示（必要になったら使う） */
 .side-controls__close {
   display: none;
 }
 
+/* SNS は使わないので強制的に非表示 */
 .side-controls__sns {
-  writing-mode: vertical-rl;
-  display: flex;
-  gap: 12px;
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  display: none;
 }
 
+/* 言語切替：左下配置（横並び） */
 .side-controls__lang {
   position: fixed;
   left: 18px;
@@ -133,6 +141,7 @@ a:hover {
   display: flex;
   gap: 10px;
   font-size: 11px;
+  z-index: 80;
 }
 
 .side-controls__lang button {
@@ -147,14 +156,11 @@ a:hover {
   color: #111;
 }
 
-
-/* 右真ん中 SCROLL */
+/* SCROLL：右真ん中（縦書き） */
 .scroll-indicator {
   position: fixed;
   right: 18px;
   top: 50%;
-  left: auto;
-  bottom: auto;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
   font-size: 10px;
@@ -163,8 +169,7 @@ a:hover {
   z-index: 80;
 }
 
-
-/* 右下 TOP */
+/* TOPボタン：右下 */
 .to-top {
   position: fixed;
   right: 18px;
@@ -181,13 +186,14 @@ a:hover {
   z-index: 80;
 }
 
-/* 右端 コピーライト */
+/* コピーライト：左真ん中、内側に寄せる */
 .copyright-rail {
   position: fixed;
-  right: 0;
+  left: 50px; /* 文字の半分くらい内側に */
   top: 50%;
-  transform: translateY(-50%) rotate(90deg);
-  transform-origin: right center;
+  right: auto;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
   font-size: 10px;
   letter-spacing: 0.18em;
   white-space: nowrap;
@@ -195,23 +201,25 @@ a:hover {
   z-index: 70;
 }
 
-/* モバイルではUIが邪魔にならないよう少し抑える */
+/* モバイル時はUIを少し抑える */
 @media (max-width: 640px) {
   .nav-trigger {
     top: 10px;
     left: 10px;
   }
-  .side-controls {
-    right: 10px;
-    bottom: 10px;
-  }
-  .scroll-indicator,
-  .to-top {
+  .to-top,
+  .scroll-indicator {
     display: none;
+  }
+  .side-controls__lang {
+    left: 12px;
+    bottom: 12px;
   }
 }
 
-/* ======== オーバーレイ ナビ ======== */
+/* =========================
+   オーバーレイメニュー
+========================= */
 
 .overlay-nav {
   position: fixed;
@@ -264,11 +272,12 @@ a:hover {
   text-decoration: none;
   color: #111;
 }
+
 .overlay-nav__list a:hover {
   text-decoration: underline;
 }
 
-/* 右上 CLOSE */
+/* CLOSEボタン（右上） */
 .overlay-nav__close {
   position: absolute;
   top: 18px;
@@ -287,7 +296,6 @@ a:hover {
   line-height: 1;
 }
 
-/* モバイル時のオーバーレイ調整 */
 @media (max-width: 768px) {
   .overlay-nav__inner {
     flex-direction: column;
@@ -296,7 +304,9 @@ a:hover {
   }
 }
 
-/* ======== HERO ======== */
+/* =========================
+   HERO
+========================= */
 
 .hero {
   position: relative;
@@ -386,21 +396,25 @@ a:hover {
   color: #f3f3f3;
 }
 
-/* HERO モバイル調整 */
+/* モバイル調整 */
 @media (max-width: 900px) {
   .hero-overlay {
     padding: 96px 18px 72px;
   }
+
   .hero-layout {
     grid-template-columns: 1fr;
     gap: 28px;
   }
+
   .hero-logo img {
     max-width: 220px;
   }
 }
 
-/* ======== WORKS ======== */
+/* =========================
+   WORKS
+========================= */
 
 .works-grid {
   display: grid;
@@ -437,13 +451,16 @@ a:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
 @media (max-width: 640px) {
   .works-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* ======== TEAM ======== */
+/* =========================
+   TEAM
+========================= */
 
 .team-grid {
   display: grid;
@@ -455,18 +472,19 @@ a:hover {
   text-align: left;
 }
 
+/* ★ 正方形 & 少し小さめ（75%） */
 .team-member img {
   display: block;
-  width: 75%;          
-  margin: 0 auto 8px;  /* 中央寄せ＋下に少し余白 */
+  width: 75%;          /* 約25%小さい */
+  margin: 0 auto 8px;  /* 中央寄せ＋下に余白 */
   border-radius: 16px;
   object-fit: cover;
-  aspect-ratio: 1 / 1; /* 正方形で表示 */
+  aspect-ratio: 1 / 1; /* 正方形 */
   background: #eee;
 }
 
 .team-member h3 {
-  margin: 10px 0 4px;
+  margin: 6px 0 4px;
   font-size: 14px;
 }
 
@@ -481,18 +499,22 @@ a:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
 @media (max-width: 768px) {
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
 @media (max-width: 480px) {
   .team-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* ======== CONTACT ======== */
+/* =========================
+   CONTACT
+========================= */
 
 .contact-mail {
   font-size: 18px;
@@ -503,10 +525,4 @@ a:hover {
 .contact-mail .note {
   font-size: 12px;
   color: #777;
-}
-
-/* ======== Misc ======== */
-
-main {
-  background: #fff;
 }
