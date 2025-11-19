@@ -186,10 +186,10 @@ main {
   z-index: 80;
 }
 
-/* コピーライト：左真ん中、少し内側に */
+/* コピーライト：左真ん中 */
 .copyright-rail {
   position: fixed;
-  left: 6px;
+  left: 10px;
   top: 50%;
   right: auto;
   transform: translateY(-50%) rotate(-90deg);
