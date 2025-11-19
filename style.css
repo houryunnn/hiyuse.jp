@@ -74,7 +74,7 @@ main {
 }
 
 /* =========================
-  UIフレーム
+   dotMP風 UIフレーム
 ========================= */
 
 /* MENUボタン 左上 */
@@ -104,7 +104,7 @@ main {
   margin-top: 2px;
 }
 
-/* 右側コンテナ（今は閉じるボタンだけ） */
+/* 右側コンテナ（今は中身なし） */
 .side-controls {
   position: fixed;
   top: 18px;
@@ -113,21 +113,21 @@ main {
   z-index: 90;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  pointer-events: none;
+  align-items: flex-end;
+  justify-content: flex-start;
+  pointer-events: none; /* 子要素にだけ pointer-events を戻す */
 }
 
 .side-controls > * {
   pointer-events: auto;
 }
 
-/* 上の×ボタンは今は非表示（必要になったら使う） */
+/* ×ボタンは非表示（使わないため） */
 .side-controls__close {
   display: none;
 }
 
-/* SNS は使わないので強制的に非表示 */
+/* SNS は完全非表示 */
 .side-controls__sns {
   display: none;
 }
@@ -186,10 +186,10 @@ main {
   z-index: 80;
 }
 
-/* コピーライト：左真ん中、内側に寄せる */
+/* コピーライト：左真ん中、少し内側に */
 .copyright-rail {
   position: fixed;
-  left: 50px; /* 文字の半分くらい内側に */
+  left: 40px;
   top: 50%;
   right: auto;
   transform: translateY(-50%) rotate(-90deg);
@@ -207,10 +207,12 @@ main {
     top: 10px;
     left: 10px;
   }
+
   .to-top,
   .scroll-indicator {
     display: none;
   }
+
   .side-controls__lang {
     left: 12px;
     bottom: 12px;
@@ -472,14 +474,14 @@ main {
   text-align: left;
 }
 
-/* ★ 正方形 & 少し小さめ（75%） */
+/* 正方形 & 少し小さめ（75%幅） */
 .team-member img {
   display: block;
-  width: 75%;          /* 約25%小さい */
-  margin: 0 auto 8px;  /* 中央寄せ＋下に余白 */
+  width: 75%;
+  margin: 0 auto 8px;
   border-radius: 16px;
   object-fit: cover;
-  aspect-ratio: 1 / 1; /* 正方形 */
+  aspect-ratio: 1 / 1;
   background: #eee;
 }
 
