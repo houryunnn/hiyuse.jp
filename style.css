@@ -126,7 +126,10 @@ a:hover {
 }
 
 .side-controls__lang {
-  writing-mode: vertical-rl;
+  position: fixed;
+  left: 18px;
+  bottom: 20px;
+  writing-mode: horizontal-tb;
   display: flex;
   gap: 10px;
   font-size: 11px;
@@ -139,21 +142,27 @@ a:hover {
   cursor: pointer;
   color: #999;
 }
+
 .side-controls__lang button.is-active {
   color: #111;
 }
 
-/* 左下 SCROLL */
+
+/* 右真ん中 SCROLL */
 .scroll-indicator {
   position: fixed;
-  left: 18px;
-  bottom: 20px;
+  right: 18px;
+  top: 50%;
+  left: auto;
+  bottom: auto;
+  transform: translateY(-50%);
   writing-mode: vertical-rl;
   font-size: 10px;
   letter-spacing: 0.18em;
   color: #444;
   z-index: 80;
 }
+
 
 /* 右下 TOP */
 .to-top {
@@ -448,10 +457,11 @@ a:hover {
 
 .team-member img {
   display: block;
-  width: 100%;
+  width: 75%;          
+  margin: 0 auto 8px;  /* 中央寄せ＋下に少し余白 */
   border-radius: 16px;
   object-fit: cover;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1; /* 正方形で表示 */
   background: #eee;
 }
 
