@@ -579,10 +579,15 @@ html.js-ready .section.is-visible {
   text-align: center;
 }
 
-/* セクション内のコンテナ：他セクションと同じくらいの幅に */
+/* 全体の幅：他セクションとバランスを合わせる */
 .contact-inner {
-  max-width: 780px;      /* 横幅ひろげる：820〜840 */
+  max-width: 780px;
   margin: 0 auto;
+}
+
+.section--contact h2 {
+  text-align: center;
+  margin-bottom: 12px;
 }
 
 /* 上の説明文 */
@@ -595,10 +600,10 @@ html.js-ready .section.is-visible {
 /* カード本体 */
 .contact-card {
   width: 100%;
-  max-width: 640px;      /* 枠の横幅 */
+  max-width: 640px;
   margin: 0 auto;
   padding: 24px 32px;
-  border-radius: 16px;   /* 他カードとトーン合わせ */
+  border-radius: 16px;  /* 丸すぎず、他カードとトーン合わせ */
   border: 1px solid rgba(0, 0, 0, 0.06);
   background: #0c1016;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
@@ -606,54 +611,13 @@ html.js-ready .section.is-visible {
   text-align: center;
 }
 
-.contact-label {
-  margin: 0 0 4px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  opacity: 0.75;
-}
-
-.contact-mail {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-}
-
-.contact-mail__at {
-  padding: 0 2px;
-}
-
-.contact-note {
-  margin: 8px 0 0;
-  font-size: 11px;
-  color: #c5c5c5;
-}
-
-/* スマホ調整 */
-@media (max-width: 480px) {
-  .contact-card {
-    max-width: none;
-    width: 100%;
-    border-radius: 18px;
-    padding: 20px 18px;
-  }
-
-  .contact-mail {
-    font-size: 16px;
-    letter-spacing: 0.08em;
-  }
-}
-/* =========================
-   CONTACT：横一列レイアウト
-========================= */
-
+/* 横一列レイアウト */
 .contact-line {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 18px;
-  flex-wrap: wrap; /* ←PCは1行、スマホ自然に折れる */
+  flex-wrap: wrap; /* PCは1行、スマホだけ自然に折れる */
   font-size: 16px;
   letter-spacing: 0.04em;
   line-height: 1.6;
@@ -667,7 +631,7 @@ html.js-ready .section.is-visible {
 
 .contact-line__mail {
   font-weight: 600;
-  font-size: 20px;      /* ←メール部分 */
+  font-size: 20px;   /* メール強調 */
   letter-spacing: 0.1em;
 }
 
@@ -676,8 +640,15 @@ html.js-ready .section.is-visible {
   opacity: 0.9;
 }
 
-/* スマホでだけ自然に折り返す */
+/* スマホ調整：幅そのままで少しだけコンパクトに */
 @media (max-width: 480px) {
+  .contact-card {
+    max-width: none;
+    width: 100%;
+    border-radius: 18px;
+    padding: 20px 18px;
+  }
+
   .contact-line {
     justify-content: center;
     gap: 10px;
@@ -685,5 +656,6 @@ html.js-ready .section.is-visible {
 
   .contact-line__mail {
     font-size: 17px;
+    letter-spacing: 0.08em;
   }
 }
