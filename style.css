@@ -189,7 +189,7 @@ main {
 /* コピーライト：左真ん中 */
 .copyright-rail {
   position: fixed;
-  left: 10px;
+  left: 18px;
   top: 50%;
   right: auto;
   transform: translateY(-50%) rotate(-90deg);
