@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // フェードイン
+  // 真っ白問題
   document.documentElement.classList.add("js-ready");
 
   // ==============================
