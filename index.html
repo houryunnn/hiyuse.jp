@@ -3,487 +3,291 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>スタジオ灯唯世 | Studio HIYUSE</title>
-  <meta name="description" content="ゲーム体験とAI技術の融合をテーマに活動するゲーム開発スタジオ、スタジオ灯唯世（Studio HIYUSE）の公式サイト。">
-  <meta name="format-detection" content="telephone=no">
-  <link rel="icon" href="/favicon.ico">
-  <meta property="og:title" content="スタジオ灯唯世 | Studio HIYUSE">
-  <meta property="og:description" content="ゲーム体験とAI技術の融合をテーマに活動するゲーム開発スタジオ。">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="/ogp.jpg">
-  <link rel="preload" as="image" href="hero-bg1.jpg">
+  <title>Studio HIYUSE | スタジオ灯唯世</title>
+  <meta name="description" content="Studio HIYUSE（スタジオ灯唯世）は、ゲーム体験とAI技術の融合をテーマに活動するゲーム開発スタジオです。">
 
-  <style>
-    :root{
-      /* ダーク固定（ヘッダーは白） */
-      --clr-bg:#0b0f14;
-      --clr-fg:#e7edf6;
-      --clr-blue:#9DFF00;
-      --clr-blue-ink:#cfe4ff;
-      --clr-accent:#35d4ff;
-      --clr-muted:#a6b3c3;
-      --radius:14px;
-      --radius-sm:10px;
-      --shadow:0 10px 30px rgba(0,0,0,.25);
-      --maxw:1100px;
-      --hdr-bg:#ffffff;
-      --hdr-fg:#0b0f14;
-      --btn-fg:#000000; /* 送信する の文字色（黒） */
-    }
-
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;background:var(--clr-bg);color:var(--clr-fg);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Meiryo,"Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
-      line-height:1.6
-    }
-    img{max-width:100%;height:auto;display:block;image-rendering:auto}
-    a{color:var(--clr-blue);text-decoration:none}
-    a:hover{opacity:.9}
-    a:focus, button:focus, input:focus, textarea:focus{outline:2px solid var(--clr-accent);outline-offset:2px}
-
-    /* ヘッダー（白固定） */
-    header{
-      position:sticky;top:0;z-index:100;
-      background:var(--hdr-bg);
-      border-bottom:1px solid rgba(10,46,102,.10);
-      backdrop-filter:saturate(160%) blur(8px);
-    }
-    .nav{
-      max-width:var(--maxw);margin:0 auto;padding:10px 18px;
-      display:flex;align-items:center;gap:12px;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:44px;width:auto}
-    .spacer{flex:1}
-
-    .menu{
-      display:flex;gap:18px;align-items:center;
-    }
-    .menu a{color:var(--hdr-fg);font-weight:600}
-    .cta{
-      padding:10px 14px;border-radius:999px;background:var(--clr-blue);color:#0b0f14;
-      box-shadow:0 6px 16px rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.06);
-      font-weight:700;
-    }
-    .cta:hover{transform:translateY(-1px)}
-
-    /* ハンバーガー（右上） */
-    .hamburger{
-      margin-left:auto;width:40px;height:40px;border-radius:8px;
-      border:1px solid rgba(0,0,0,.12);
-      background:#fff;color:#9DFF00;
-      display:none;align-items:center;justify-content:center;cursor:pointer;
-    }
-    .hamburger span{
-      position:relative;width:22px;height:2px;background:#0b0f14;display:block;border-radius:2px;
-    }
-    .hamburger span::before,.hamburger span::after{
-      content:"";position:absolute;left:0;width:22px;height:2px;background:#0b0f14;border-radius:2px;
-    }
-    .hamburger span::before{top:-7px}
-    .hamburger span::after{top:7px}
-
-    @media (max-width:900px){
-      .hamburger{display:inline-flex}
-      .menu{
-        position:absolute;top:64px;right:18px;left:18px;
-        display:none;flex-direction:column;gap:12px;
-        background:var(--hdr-bg);border:1px solid rgba(0,0,0,.1);
-        border-radius:12px;padding:12px;
-        box-shadow:0 20px 40px rgba(0,0,0,.12);
-      }
-      .menu.open{display:flex}
-    }
-
-    /* ヒーロー */
-    .hero{position:relative;overflow:hidden;background:#000}
-    .slider{position:relative;height:min(55vh,551px);max-height:551px}
-    .slide{
-      position:absolute;inset:0;opacity:0;transition:opacity 800ms ease;
-      background-position:center;background-size:cover;background-repeat:no-repeat;
-    }
-    .slide.active{opacity:1}
-    .hero-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.55) 75%, rgba(0,0,0,.65) 100%);
-      display:flex;align-items:flex-end;justify-content:center;padding:40px 18px;
-    }
-    .hero-inner{width:100%;max-width:var(--maxw);color:#fff;text-align:left}
-    .kicker{color:var(--clr-accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    .hero h1{margin:.3em 0 .4em;font-size:clamp(24px,4.5vw,44px);line-height:1.2}
-    .hero p{max-width:720px;color:rgba(255,255,255,.9)}
-    .hero-actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      border:1px solid rgba(255,255,255,.4);color:#fff;padding:10px 14px;border-radius:10px;
-      backdrop-filter:blur(6px)
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,var(--clr-blue) 0%, var(--clr-accent) 100%);
-      border:none;box-shadow:0 10px 24px rgba(0,0,0,.25);
-      color:#0b0f14;font-weight:800;
-    }
-
-    /* セクション共通 */
-    section[id]{scroll-margin-top:80px}
-    .section{max-width:var(--maxw);margin:0 auto;padding:56px 18px}
-    .section h2{font-size:clamp(20px,3.2vw,28px);color:var(--clr-blue-ink);margin:0 0 14px}
-    .section .lead{color:var(--clr-muted);margin-bottom:24px}
-
-    /* カード */
-    .card{
-      background:#141b24;border:1px solid #223146;border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:22px;color:var(--clr-fg);
-    }
-
-    /* メンバー */
-    .members{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
-    }
-    @media (max-width:1000px){
-      .members{grid-template-columns:repeat(3,1fr);}
-    }
-    @media (max-width:720px){
-      .members{grid-template-columns:repeat(2,1fr);}
-    }
-    @media (max-width:600px){
-      .members{grid-template-columns:1fr;gap:18px;}
-      .member{justify-content:center;text-align:center;flex-direction:column;}
-      .member img{margin:0 auto 8px;}
-      .member .role{text-align:center;}
-    }
-    .member{
-      background:#141b24;border:1px solid #223146;border-radius:var(--radius-sm);
-      box-shadow:var(--shadow);padding:14px;display:flex;gap:12px;align-items:center;color:var(--clr-fg);
-    }
-    .member img{
-      width:64px;height:64px;border-radius:12px;object-fit:cover;flex:0 0 auto;
-      image-rendering:-webkit-optimize-contrast;
-    }
-    .member .meta{display:flex;flex-direction:column}
-    .member .name{font-weight:700}
-    .member .role{color:var(--clr-muted);font-size:.95em}
-
-    /* 開発実績 */
-    .works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    @media (max-width:900px){.works{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:620px){.works{grid-template-columns:1fr}}
-    .work{
-      border-radius:var(--radius-sm);overflow:hidden;border:1px solid #223146;background:#141b24;
-      box-shadow:var(--shadow);color:var(--clr-fg);
-    }
-    .work .thumb{aspect-ratio:16/9;position:relative;background:#0f151d}
-    .work .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .work .body{padding:14px}
-    .work .title{font-weight:700}
-    .work .desc{color:var(--clr-muted);font-size:.95em}
-
-    /* フォーム */
-    form{
-      background:#141b24;border:1px solid #223146;border-radius:var(--radius);
-      box-shadow:var(--shadow);padding:18px;max-width:760px;margin:0 auto;color:var(--clr-fg);
-    }
-    label{display:block;font-weight:600;margin:10px 0 6px}
-    input,textarea{
-      width:100%;padding:12px 14px;border:1px solid #2a3a50;border-radius:10px;
-      font-size:16px;background:#0f151d;color:var(--clr-fg)
-    }
-    textarea{min-height:120px;resize:vertical}
-    .form-actions{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .form-actions .submit{
-      background:var(--clr-blue);color:var(--btn-fg);
-      border:1px solid rgba(0,0,0,.25);border-radius:999px;padding:12px 18px;
-      font-weight:800;cursor:pointer;
-    }
-    .form-actions .submit:hover{filter:brightness(0.96);transform:translateY(-1px)}
-    .note{color:var(--clr-muted);font-size:.92em}
-
-    /* フッター */
-    footer{margin-top:40px;padding:28px 18px;background:#05080d;color:#cfe4ff}
-    .footer-inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .small{font-size:.92em;color:#9fb0c8}
-
-    /* 強調表示：Studio Head 用 */
-    .highlight-role {
-    color: #9DFF00;
-    font-weight: 800;
-    display: block; 
-    }
-
-
-    /* フェードイン */
-    .reveal{opacity:0;transform:translateY(18px);filter:blur(2px);
-      transition:opacity .7s ease,transform .7s ease,filter .7s ease;}
-    .reveal.show{opacity:1;transform:none;filter:none;}
-
-    @media (prefers-reduced-motion:reduce){
-      .slide{transition:none!important}
-      .reveal{transition:none!important;opacity:1!important;transform:none!important;filter:none!important;}
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <nav class="nav" aria-label="グローバル">
-      <div class="brand">
-        <img src="logo.png" alt="スタジオ灯唯世ロゴ">
-      </div>
-      <div class="spacer"></div>
-      <button class="hamburger" id="hamburger" aria-label="メニューを開閉" aria-controls="menu" aria-expanded="false">
-        <span></span>
-      </button>
-      <div class="menu" id="menu" role="navigation" aria-label="主要メニュー">
-        <a href="#about">会社概要</a>
-        <a href="#message">代表挨拶</a>
-        <a href="#members">メンバー</a>
-        <a href="#works">開発実績</a>
-        <a class="cta" href="#contact">お問い合わせ</a>
-      </div>
-    </nav>
-  </header>
 
-  <section class="hero" aria-label="キービジュアル">
-    <div class="slider" id="slider">
-      <div class="slide active" style="background-image:url('hero-bg1.jpg')"></div>
-      <div class="slide" style="background-image:url('hero-bg2.jpg')"></div>
-      <div class="slide" style="background-image:url('hero-bg3.jpg')"></div>
+<!-- ==========
+  UIフレーム
+========== -->
+
+<!-- 左上：MENU -->
+<button class="nav-trigger" id="navTrigger">
+  <span class="nav-trigger__icon">+</span>
+  <span class="nav-trigger__label">MENU</span>
+</button>
+
+<!-- 右側：縦 UI -->
+<aside class="side-controls">
+  <button class="side-controls__close" id="sideClose">×</button>
+
+  <div class="side-controls__sns">
+    <a href="#" aria-label="Instagram">IG</a>
+  </div>
+
+  <div class="side-controls__lang">
+    <button class="is-active">JP</button>
+    <button>EN</button>
+  </div>
+</aside>
+
+<!-- 左下：SCROLL -->
+<div class="scroll-indicator">SCROLL</div>
+
+<!-- 右下：TOP -->
+<button class="to-top" id="toTop">
+  <span>TOP</span>
+  <span class="to-top__arrow">▲</span>
+</button>
+
+<!-- 右端 © -->
+<div class="copyright-rail">
+  © 2025 Studio HIYUSE
+</div>
+
+
+<!-- ==========
+  FULLSCREEN MENU
+========== -->
+<nav class="overlay-nav" id="overlayNav" aria-hidden="true">
+  <div class="overlay-nav__inner">
+
+    <div class="overlay-nav__logo">
+      <img src="assets/img/logo-hiyuse.svg" alt="Studio HIYUSE">
     </div>
-    <div class="hero-overlay">
-      <div class="hero-inner reveal">
-        <div class="kicker">〇〇</div>
-        <h1>新しい、あなただけの没入体験を。</h1>
-        <p>スタジオ灯唯世（Studio HIYUSE）は、ゲーム体験とAI技術の融合をテーマに活動するゲーム開発スタジオです。</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">お問い合わせ</a>
-          <a class="btn" href="#works">開発実績を見る</a>
-        </div>
+
+    <ul class="overlay-nav__list">
+      <li><a href="#hero">TOP</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#message">MESSAGE</a></li>
+      <li><a href="#business">BUSINESS</a></li>
+      <li><a href="#works">WORKS</a></li>
+      <li><a href="#team">TEAM</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </div>
+
+  <button class="overlay-nav__close" id="overlayClose">
+    <span>×</span>
+    <span class="overlay-nav__close-label">CLOSE</span>
+  </button>
+</nav>
+
+
+<!-- ==========
+  MAIN CONTENT
+========== -->
+<main id="main">
+
+<!-- ==========
+  HERO：パラパラ→ゆっくり
+========== -->
+<section id="hero" class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg__slide is-active" style="background-image:url('assets/img/hero/hero_01.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_02.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_03.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_04.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_05.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_06.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_07.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_08.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_09.jpg')"></div>
+    <div class="hero-bg__slide" style="background-image:url('assets/img/hero/hero_10.jpg')"></div>
+  </div>
+
+  <div class="hero-overlay">
+    <div class="hero-layout">
+      <div class="hero-logo">
+        <img src="assets/img/logo-hiyuse.svg" alt="Studio HIYUSE">
+      </div>
+
+      <div class="hero-copy">
+        <p class="hero-kicker">GAME × EXPERIENCE × AI</p>
+        <h1>
+          新しい、あなただけの<br>
+          没入体験を。
+        </h1>
+        <p class="hero-text">
+          スタジオ灯唯世（Studio HIYUSE）は、ゲーム体験とAI技術の融合をテーマに
+          活動するゲーム開発スタジオです。
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="about" class="section reveal">
-    <h2>会社概要</h2>
-    <p class="lead">「没入できる喜び」と「心を震わせる」ゲームを、AI技術を織り込むことでどこまで最大限に設計できるか。<br>その問いを軸に、私たちは作品づくりを続けています。</p>
-    <div class="card reveal">
-      <p><strong>会社名</strong>：スタジオ灯唯世</p>
-      <p><strong>所在地</strong>：東京都千代田区　秋葉原</p>
-      <p><strong>設立</strong>：2025年</p>
-      <p><strong>事業内容</strong>：ゲーム開発／映像・音楽制作／AIシステム研究</p>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2>ABOUT</h2>
+
+  <p class="lead">
+    「没入できる喜び」と「感情を震わせる」ゲームを、AI技術を織り込むことでどこまで設計できるか。<br>
+    その問いを軸に、私たちは作品づくりを続けています。
+  </p>
+
+  <div class="card">
+    <div class="grid-2">
+      <div>
+        <p><strong>Company Name</strong>：スタジオ灯唯世 / Studio HIYUSE</p>
+        <p><strong>Location</strong>：東京都千代田区（秋葉原エリア）</p>
+        <p><strong>Founded</strong>：2025年（予定）</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="message" class="section reveal">
-    <h2>代表挨拶</h2>
-    <div class="card reveal">
-      <p>スタジオ灯唯世にアクセスいただきありがとうございます。<br>
-      私たちは、ゲーム体験に情熱を持つプロフェッショナルの集団です。<br>
+
+<!-- MESSAGE -->
+<section id="message" class="section">
+  <h2>MESSAGE</h2>
+
+  <div class="card">
+    <p>
+      スタジオ灯唯世にアクセスいただきありがとうございます。私たちは、ゲーム体験に情熱を持つプロフェッショナルの集団です。<br>
       どんなに技術が進化しても、感情を揺らし、世界を動かすのは、創る人間の意志そのものです。<br>
-      灯唯世という名前には、「世界の誰かの為に響くゲーム体験で、社会に灯をともせるように」という願いを込めました。<br>
-      これからも、私たちの情熱×AI技術でプレイヤーの心に火をつける作品をお届けしていきます。</p>
-      <p>代表取締役 渡邉 勇樹</p>
+      灯唯世という名前には、「世界の誰かの為に響くゲーム体験で、灯をともせるように」という願いを込めました。<br>
+      これからも、感情×AIの技術でプレイヤーの心に火をつける作品をお届けしていきます。
+    </p>
+    <p>Studio Head　Yuki Watanabe</p>
+  </div>
+</section>
+
+
+<!-- BUSINESS -->
+<section id="business" class="section">
+  <h2>OUR BUSINESS</h2>
+  <p>ゲーム開発｜映像制作｜音楽制作｜AIシステム研究</p>
+</section>
+
+
+<!-- WORKS -->
+<section id="works" class="section">
+  <h2>WORKS</h2>
+
+  <div class="works-grid">
+    <article class="work-item">
+      <img src="assets/img/works/work_01.jpg" alt="">
+      <h3>AAAタイトルプロジェクト開発中</h3>
+      <p>2026年公開予定</p>
+    </article>
+
+    <article class="work-item">
+      <img src="assets/img/works/work_02.jpg" alt="">
+      <h3>ローカルLLM × AI演出技術</h3>
+      <p>AIを活用したゲーム内演出制御システムなど、独自技術の研究開発も進行しています。</p>
+    </article>
+
+    <article class="work-item">
+      <img src="assets/img/works/work_03.jpg" alt="">
+      <h3>新規ゲーム企画（Seed）</h3>
+      <p>オープンワールド｜AI分野から中心に開発中です。</p>
+    </article>
+  </div>
+</section>
+
+
+<!-- TEAM -->
+<section id="team" class="section">
+  <h2>TEAM</h2>
+
+  <div class="team-grid">
+
+    <div class="team-member">
+      <img src="assets/img/team/member1.png" alt="Y. Watanabe">
+      <h3>Y. Watanabe</h3>
+      <p>
+        Studio Head<br>
+        元株式会社リクルート、スクウェア・エニックス事業部長
+      </p>
     </div>
-  </section>
 
-  <section id="members" class="section reveal">
-    <h2>メンバー</h2>
-    <div class="members">
-      <div class="member reveal">
-        <img src="member1.png" alt="Y. Watanabeのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">Y. Watanabe</span>
-          <span class="role"><span class="highlight-role">Studio Head</span>元スクウェア・エニックス事業部長</span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member2.png" alt="H. Iwanoのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">H. Iwano</span>
-          <span class="role"><span class="highlight-role">Chief Creative Officer</span>元プロデューサー – スクウェア・エニックス、アカツキ</span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member3.png" alt="K. Morishitaのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">K. Morishita</span>
-          <span class="role"><span class="highlight-role">Technical Officer</span>プログラミング、Unity、Unreal、およびAI分野開発</span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member5.png" alt="K. Sekiのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">K. Seki</span>
-          <span class="role"><span class="highlight-role">Art Director</span>元Akatsukiのアートディレクター</span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member6.png" alt="Y. Miyamotoのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">Y. Miyamoto</span>
-          <span class="role"><span class="highlight-role">Legal &amp; Finance Manager</span></span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member7.png" alt="C. Chenのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">C. Chen</span>
-          <span class="role"><span class="highlight-role">China Business Manager</span></span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member8.png" alt="N. Houryuのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">N. Houryu</span>
-          <span class="role"><span class="highlight-role">Business Development Manager</span></span>
-        </div>
-      </div>
-      <div class="member reveal">
-        <img src="member4.png" alt="K. Fujiiのプロフィール写真" width="64" height="64" loading="lazy" decoding="async">
-        <div class="meta">
-          <span class="name">K. Fujii</span>
-          <span class="role"><span class="highlight-role">Advisor</span>元PwC、スクウェア・エニックスの執行役員</span>
-        </div>
-      </div>
+    <div class="team-member">
+      <img src="assets/img/team/member2.png" alt="H. Iwano">
+      <h3>H. Iwano</h3>
+      <p>
+        Chief Creative Officer<br>
+        元プロデューサー – スクウェア・エニックス、アカツキ
+      </p>
     </div>
-  </section>
 
-  <section id="works" class="section reveal">
-    <h2>開発実績</h2>
-    <div class="works">
-      <div class="work reveal">
-        <div class="thumb">
-          <img src="work1.jpg" alt="AAAタイトルプロジェクトのキービジュアル" width="1280" height="720" loading="lazy" decoding="async">
-        </div>
-        <div class="body">
-          <div class="title">AAAタイトルプロジェクト開発中</div>
-          <div class="desc">2026年公開予定</div>
-        </div>
-      </div>
-      <div class="work reveal">
-        <div class="thumb">
-          <img src="work2.jpg" alt="ローカルLLMとゲーム演出制御の統合イメージ" width="1280" height="720" loading="lazy" decoding="async">
-        </div>
-        <div class="body">
-          <div class="title">ローカルLLMを活用した生成AI技術の融合</div>
-          <div class="desc">AIを活用したゲーム内演出制御システムなど、独自技術の研究開発も進行しています。</div>
-        </div>
-      </div>
-      <div class="work reveal">
-        <div class="thumb">
-          <img src="work3.jpg" alt="新規ゲーム企画のコンセプトイメージ" width="1280" height="720" loading="lazy" decoding="async">
-        </div>
-        <div class="body">
-          <div class="title">新規ゲーム企画（seedラウンド）</div>
-          <div class="desc">オープンワールド｜AI分野から中心に開発中です。</div>
-        </div>
-      </div>
+    <div class="team-member">
+      <img src="assets/img/team/member3.png" alt="K. Morishita">
+      <h3>K. Morishita</h3>
+      <p>
+        Technical Officer<br>
+        プログラミング、Unity、Unreal、およびAI分野開発
+      </p>
     </div>
-  </section>
 
-  <section id="contact" class="section reveal">
-    <h2>お問い合わせ</h2>
-    <p class="lead">投資・パートナーシップ・採用に関するお問い合わせは、以下のフォームをご利用ください。</p>
-    <form id="contactForm" action="/api/contact" method="POST" novalidate>
-      <label for="name">お名前</label>
-      <input id="name" name="name" type="text" required placeholder="〇〇 〇〇" autocomplete="name">
-
-      <label for="company">会社名</label>
-      <input id="company" name="company" type="text" placeholder="〇〇株式会社" autocomplete="organization">
-
-      <label for="email">メール</label>
-      <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" inputmode="email">
-
-      <label for="message">お問い合わせ内容</label>
-      <textarea id="message" name="message" required placeholder="投資・出資について など" autocomplete="off"></textarea>
-
-      <div class="form-actions">
-        <button class="submit" type="submit">送信する</button>
-        <span class="note">送信後、2営業日以内にご連絡いたします。</span>
-      </div>
-    </form>
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div>© 2025 スタジオ灯唯世 / Studio HIYUSE. All Rights Reserved.</div>
-      <div class="small"><a href="#" aria-label="プライバシーポリシー">プライバシーポリシー</a> | <a href="#" aria-label="利用規約">利用規約</a></div>
+    <div class="team-member">
+      <img src="assets/img/team/member5.png" alt="K. Seki">
+      <h3>K. Seki</h3>
+      <p>
+        Art Director<br>
+        元アカツキのアートディレクター
+      </p>
     </div>
-  </footer>
 
-  <script>
-    // ===== ハンバーガー（右上） =====
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
-    hamburger.addEventListener('click', () => {
-      const open = menu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', String(open));
-    });
-    const mq = window.matchMedia('(max-width:900px)');
-    mq.addEventListener('change', () => { menu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); });
+    <div class="team-member">
+      <img src="assets/img/team/member6.png" alt="Y. Miyamoto">
+      <h3>Y. Miyamoto</h3>
+      <p>
+        Legal &amp; Finance Manager
+      </p>
+    </div>
 
-    // ===== ヒーロースライダー（フェード） =====
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    let idx = 0, timerId = null;
-    const startSlider = () => {
-      if (slides.length <= 1 || timerId) return;
-      timerId = setInterval(() => {
-        slides[idx]?.classList.remove('active');
-        idx = (idx + 1) % slides.length;
-        slides[idx]?.classList.add('active');
-      }, 4200);
-    };
-    const stopSlider = () => { if (timerId){ clearInterval(timerId); timerId=null; } };
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReduced && slides.length > 1) startSlider();
-    document.addEventListener('visibilitychange', () => { if (document.hidden) stopSlider(); else if (!prefersReduced) startSlider(); });
+    <div class="team-member">
+      <img src="assets/img/team/member7.png" alt="C. Chen">
+      <h3>C. Chen</h3>
+      <p>
+        China Business Manager
+      </p>
+    </div>
 
-    // ===== フェードイン（IntersectionObserver） =====
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { root:null, rootMargin:'0px 0px -10% 0px', threshold:0.15 });
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    <div class="team-member">
+      <img src="assets/img/team/member8.png" alt="N. Houryu">
+      <h3>N. Houryu</h3>
+      <p>
+        Business Development Manager
+      </p>
+    </div>
 
-    // ===== フォーム送信（JSON POST + A11y通知 + 多重送信防止） =====
-    const form = document.getElementById('contactForm');
-    const submitBtn = form.querySelector('.submit');
-    const noteArea = document.createElement('div');
-    noteArea.setAttribute('role', 'status');
-    noteArea.setAttribute('aria-live', 'polite');
-    noteArea.className = 'note';
-    form.appendChild(noteArea);
+    <div class="team-member">
+      <img src="assets/img/team/member4.png" alt="K. Fujii">
+      <h3>K. Fujii</h3>
+      <p>
+        Advisor<br>
+        元PwC、スクウェア・エニックスの執行役員
+      </p>
+    </div>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fd = new FormData(form);
-      const payload = Object.fromEntries(fd.entries());
-      submitBtn.disabled = true;
-      noteArea.textContent = '送信中…';
+  </div>
+</section>
 
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('送信に失敗しました');
-        noteArea.textContent = '送信が完了しました。ありがとうございます。';
-        alert('送信が完了しました。ありがとうございます。');
-        form.reset();
-      } catch (err) {
-        noteArea.textContent = '送信エラーが発生しました。しばらくしてから再度お試しください。';
-        alert('送信エラーが発生しました。しばらくしてから再度お試しください。');
-      } finally {
-        submitBtn.disabled = false;
-      }
-    });
-  </script>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2>CONTACT</h2>
+
+  <p class="contact-mail">
+    info★hiyuse.jp<br>
+    <span class="note">（★を @ に変えてお送りください）</span>
+  </p>
+
+  <p class="lead">
+    お仕事のご依頼やご相談など、<br>
+    お気軽にお問い合わせください。
+  </p>
+</section>
+
+</main>
+
+<script src="main.js"></script>
+
 </body>
 </html>
-
-
-
-
