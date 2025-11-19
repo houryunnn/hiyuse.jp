@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 真っ白問題
+  // HTML にフラグを付けて、CSS 側で「JS 有効時だけアニメ」制御
   document.documentElement.classList.add("js-ready");
 
   // ==============================
@@ -25,8 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
       heroSlides[heroIndex].classList.add("is-active");
     };
 
+    // 最初：パラパラ
     sliderTimer = setInterval(switchFast, FAST_INTERVAL);
 
+    // 一定時間後：ゆっくり
     setTimeout(() => {
       clearInterval(sliderTimer);
       sliderTimer = setInterval(switchNormal, NORMAL_INTERVAL);
@@ -41,11 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlayClose = document.getElementById("overlayClose");
 
   function openNav() {
+    if (!overlayNav) return;
     overlayNav.classList.add("is-open");
     overlayNav.setAttribute("aria-hidden", "false");
   }
 
   function closeNav() {
+    if (!overlayNav) return;
     overlayNav.classList.remove("is-open");
     overlayNav.setAttribute("aria-hidden", "true");
   }
@@ -53,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (navTrigger) navTrigger.addEventListener("click", openNav);
   if (overlayClose) overlayClose.addEventListener("click", closeNav);
 
+  // メニュー内リンクで自動クローズ
   if (overlayNav) {
     overlayNav.addEventListener("click", (e) => {
       if (e.target.matches(".overlay-nav__list a")) {
@@ -76,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==============================
   const sections = Array.from(document.querySelectorAll(".section"));
 
-  if (sections.length > 0) {
+  if (sections.length > 0 && "IntersectionObserver" in window) {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -85,8 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const el = entry.target;
           const index = sections.indexOf(el);
 
-          const baseDelay = 0.2;
-          const perSection = 0.12;
+          const baseDelay = 0.2; // 全体のワンテンポ
+          const perSection = 0.12; // セクションごとの差
 
           el.style.transitionDelay = `${baseDelay + perSection * index}s`;
           el.classList.add("is-visible");
@@ -100,6 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     sections.forEach((sec) => sectionObserver.observe(sec));
+  } else {
+    // 古いブラウザ用：全部即表示
+    sections.forEach((el) => el.classList.add("is-visible"));
   }
 
   // ==============================
@@ -107,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==============================
   const teamGrid = document.querySelector("#team .team-grid");
 
-  if (teamGrid) {
+  if (teamGrid && "IntersectionObserver" in window) {
     const members = Array.from(teamGrid.querySelectorAll(".team-member"));
 
     const teamObserver = new IntersectionObserver(
@@ -132,5 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     teamObserver.observe(teamGrid);
+  } else if (teamGrid) {
+    // フォールバック
+    const members = Array.from(teamGrid.querySelectorAll(".team-member"));
+    members.forEach((m) => m.classList.add("is-visible"));
   }
 });
