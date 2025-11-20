@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==============================
   const heroSlides = Array.from(document.querySelectorAll(".hero-bg__slide"));
   let heroIndex = 0;
-  const FAST_INTERVAL = 350; // パラパラ速度
+  const FAST_INTERVAL = 100; // パラパラ速度
   const NORMAL_INTERVAL = 5000; // 以降のゆっくり
-  const FAST_DURATION = 4000; // 何秒パラパラさせるか
+  const FAST_DURATION = 3000; // 何秒パラパラさせるか
   let sliderTimer;
 
   if (heroSlides.length > 1) {
