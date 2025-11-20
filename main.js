@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       members.forEach((m) => m.classList.add("is-visible"));
     };
 
-    // PC / タブレットのみ IntersectionObserver で順番ポップイン
+    // PC のみ IntersectionObserver で順番ポップイン
     const canUseObserver =
       "IntersectionObserver" in window && window.innerWidth > 768;
 
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 数秒後に強制表示
       setTimeout(revealAllMembers, 8000);
     } else {
-      // ★ スマホなど：アニメなしで即表示
+      // ★ スマホ / タブレット：アニメなしで即表示
       revealAllMembers();
     }
   }
