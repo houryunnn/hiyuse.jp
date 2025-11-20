@@ -300,8 +300,8 @@ html.js-ready .section.is-visible {
 /* CLOSEボタン（右上） */
 .overlay-nav__close {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 18px; /* nav-trigger と同じ値に調整 */
+  right: 18px; /* nav-trigger と同じ値に調整 */
   border: none;
   background: none;
   cursor: pointer;
@@ -491,9 +491,27 @@ html.js-ready .section.is-visible {
 
 .team-member {
   text-align: left;
-  opacity: 1; /* （スマホ透明問題対策済みなので常に 1 でOK） */
-  transform: none;
+  /* JS側で制御するため、アニメーション用の設定はCSSから削除し、
+     スマホ・タブレットでも要素が常に表示されるようにします。 */
+  opacity: 1;
+  transform: none; 
 }
+
+/* PC/タブレットでアニメーションを有効にするためのCSSを再定義 */
+/* JS有効時、PCサイズではアニメーションを適用 */
+@media (min-width: 769px) {
+  html.js-ready .section#team .team-member {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+
+  html.js-ready .section#team .team-member.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* 画像は100%幅（カード幅いっぱい）で揃える */
 .team-member img {
@@ -542,30 +560,6 @@ html.js-ready .section.is-visible {
   }
 }
 
-
-/* =========================
-   CONTACT
-========================= */
-
-.section--contact {
-  text-align: center;
-}
-
-.section--contact h2 {
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-.contact-inner {
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.contact-lead {
-  margin: 0 0 24px;
-  color: #555;
-  font-size: 14px;
-}
 
 /* =========================
    CONTACT
