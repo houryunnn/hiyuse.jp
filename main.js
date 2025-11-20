@@ -92,9 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const baseDelay = 0.2; // 全体のワンテンポ
           const perSection = 0.12; // セクションごとの差
+          const cssDelay = baseDelay + perSection * index;
 
-          el.style.transitionDelay = `${baseDelay + perSection * index}s`;
-          el.classList.add("is-visible");
+          el.style.transitionDelay = `${cssDelay}s`;
+
+          // 少し遅らせてクラス付与（ファーストビューでもふわっと出るように）
+          setTimeout(() => {
+            el.classList.add("is-visible");
+          }, 50);
 
           sectionObserver.unobserve(el);
         });
@@ -115,34 +120,46 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==============================
   const teamGrid = document.querySelector("#team .team-grid");
 
-  if (teamGrid && "IntersectionObserver" in window) {
+  if (teamGrid) {
     const members = Array.from(teamGrid.querySelectorAll(".team-member"));
 
-    const teamObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
+    // 共通：全部表示する関数（保険用）
+    const revealAllMembers = () => {
+      members.forEach((m) => m.classList.add("is-visible"));
+    };
 
-          members.forEach((m, i) => {
-            const baseDelay = 0.2;
-            const perMember = 0.1;
+    // PC / タブレットのみ IntersectionObserver で順番ポップイン
+    const canUseObserver =
+      "IntersectionObserver" in window && window.innerWidth > 768;
 
-            m.style.transitionDelay = `${baseDelay + perMember * i}s`;
-            m.classList.add("is-visible");
+    if (canUseObserver) {
+      const teamObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            members.forEach((m, i) => {
+              const baseDelay = 0.2;
+              const perMember = 0.1;
+              m.style.transitionDelay = `${baseDelay + perMember * i}s`;
+              m.classList.add("is-visible");
+            });
+
+            teamObserver.disconnect();
           });
+        },
+        {
+          threshold: 0.3,
+        }
+      );
 
-          teamObserver.disconnect();
-        });
-      },
-      {
-        threshold: 0.3,
-      }
-    );
+      teamObserver.observe(teamGrid);
 
-    teamObserver.observe(teamGrid);
-  } else if (teamGrid) {
-    // フォールバック
-    const members = Array.from(teamGrid.querySelectorAll(".team-member"));
-    members.forEach((m) => m.classList.add("is-visible"));
+      // 数秒後に強制表示
+      setTimeout(revealAllMembers, 8000);
+    } else {
+      // ★ スマホなど：アニメなしで即表示
+      revealAllMembers();
+    }
   }
 });
