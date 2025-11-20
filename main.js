@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       members.forEach((m) => m.classList.add("is-visible"));
     };
 
-    // PC のみ IntersectionObserver で順番ポップイン
+    // PC / タブレットのみ IntersectionObserver で順番ポップイン
     const canUseObserver =
       "IntersectionObserver" in window && window.innerWidth > 768;
 
@@ -157,14 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 数秒後に強制表示
       setTimeout(revealAllMembers, 8000);
-    } else {
-      // ★ スマホ / タブレット：親セクションもメンバーもアニメなしで即表示
-      const teamSection = document.getElementById("team");
-      if (teamSection) {
-        // 親セクション（#team）に is-visible を付けて、全体を即座に表示
-        teamSection.classList.add("is-visible");
-      }
-      revealAllMembers();
-    }
+    } 
+    // ★ elseブロックを削除し、モバイル時は何もせず、
+    // セクション全体の表示は全体フェードインロジックに任せる
   }
 });
