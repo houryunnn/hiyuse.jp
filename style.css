@@ -488,13 +488,14 @@ html.js-ready .section.is-visible {
   gap: 20px;
 }
 
+/* ベース：デフォルトは「ちゃんと見える」状態にしておく */
 .team-member {
   text-align: left;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  opacity: 1;
+  transform: none;
 }
 
+/* レイアウト系（画像サイズなど）はそのまま */
 .team-member img {
   display: block;
   width: 75%;
@@ -505,7 +506,6 @@ html.js-ready .section.is-visible {
   background: #eee;
 }
 
-/* テキストも画像と同じ幅に収める */
 .team-member h3,
 .team-member p {
   width: 75%;
@@ -524,11 +524,19 @@ html.js-ready .section.is-visible {
   color: #555;
 }
 
-.team-member.is-visible {
+/* ★ JS 有効時だけ、アニメ用に上書きする */
+html.js-ready .team-member {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+html.js-ready .team-member.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* レスポンシブ */
 @media (max-width: 1024px) {
   .team-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -546,6 +554,7 @@ html.js-ready .section.is-visible {
     grid-template-columns: 1fr;
   }
 }
+
 
 /* =========================
    CONTACT
