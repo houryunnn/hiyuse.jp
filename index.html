@@ -9,52 +9,38 @@
 </head>
 <body>
 
-<!-- ==========
-  UIフレーム
-========== -->
-
-<!-- 左上：MENU -->
 <button class="nav-trigger" id="navTrigger">
   <span class="nav-trigger__icon">+</span>
   <span class="nav-trigger__label">MENU</span>
 </button>
 
-<!-- 左下：JP / EN -->
 <div class="lang-switch side-controls__lang">
   <button class="is-active">JP</button>
   <button>EN</button>
 </div>
 
-<!-- 右中央：SCROLL + ▼アニメ -->
 <div class="scroll-indicator">
   <span class="scroll-indicator__text">SCROLL</span>
   <span class="scroll-indicator__arrow">▼</span>
 </div>
 
-<!-- 右下：TOP -->
 <button class="to-top" id="toTop">
   <span>TOP</span>
   <span class="to-top__arrow">▲</span>
 </button>
 
-<!-- 左中央：縦コピーライト -->
 <div class="copyright-rail">
   © 2025 Studio HIYUSE
 </div>
 
 
-<!-- ==========
-  FULLSCREEN MENU
-========== -->
 <nav class="overlay-nav" id="overlayNav" aria-hidden="true">
   <div class="overlay-nav__inner">
 
-    <!-- ロゴ -->
     <div class="overlay-nav__logo">
       <img src="logo.png" alt="Studio HIYUSE">
     </div>
 
-    <!-- メニュー -->
     <ul class="overlay-nav__list">
       <li><a href="#hero">TOP</a></li>
       <li><a href="#about">ABOUT</a></li>
@@ -66,7 +52,6 @@
     </ul>
   </div>
 
-  <!-- 閉じるボタン -->
   <button class="overlay-nav__close" id="overlayClose">
     <span>×</span>
     <span class="overlay-nav__close-label">CLOSE</span>
@@ -74,24 +59,16 @@
 </nav>
 
 
-<!-- ==========
-  MAIN CONTENT
-========== -->
 <main id="main">
 
-  <!-- ==========
-    HERO：パラパラ→ゆっくりスライダー
-  ========== -->
   <section id="hero" class="hero">
 
-    <!-- 背景スライド（いまは 3 枚にしておく） -->
     <div class="hero-bg">
       <div class="hero-bg__slide is-active" style="background-image:url('hero-bg1.jpg')"></div>
       <div class="hero-bg__slide" style="background-image:url('hero-bg2.jpg')"></div>
       <div class="hero-bg__slide" style="background-image:url('hero-bg3.jpg')"></div>
     </div>
 
-    <!-- 前景 -->
     <div class="hero-overlay">
       <div class="hero-layout">
 
@@ -116,7 +93,6 @@
   </section>
 
 
-  <!-- ABOUT -->
   <section id="about" class="section">
     <h2>ABOUT</h2>
 
@@ -137,7 +113,6 @@
   </section>
 
 
-  <!-- MESSAGE -->
   <section id="message" class="section">
     <h2>MESSAGE</h2>
 
@@ -153,7 +128,6 @@
   </section>
 
 
-  <!-- BUSINESS -->
   <section id="business" class="section">
     <h2>OUR BUSINESS</h2>
     <p class="lead">
@@ -162,7 +136,6 @@
   </section>
 
 
-  <!-- WORKS -->
   <section id="works" class="section">
     <h2>WORKS</h2>
 
@@ -188,7 +161,6 @@
   </section>
 
 
-  <!-- TEAM -->
   <section id="team" class="section">
     <h2>TEAM</h2>
 
@@ -261,8 +233,7 @@
   </section>
 
 
-  <!-- CONTACT -->
-<section id="contact" class="section section--contact">
+  <section id="contact" class="section section--contact">
   <div class="contact-inner">
     <h2>CONTACT</h2>
 
@@ -286,6 +257,3 @@
 <script src="main.js"></script>
 </body>
 </html>
-
-
-
