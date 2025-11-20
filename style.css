@@ -300,8 +300,8 @@ html.js-ready .section.is-visible {
 /* CLOSEボタン（右上） */
 .overlay-nav__close {
   position: absolute;
-  top: 18px; /* nav-trigger と同じ値に調整 */
-  right: 18px; /* nav-trigger と同じ値に調整 */
+  top: 18px; /* nav-trigger と同じ値に調整済み */
+  right: 18px; /* nav-trigger と同じ値に調整済み */
   border: none;
   background: none;
   cursor: pointer;
@@ -491,8 +491,6 @@ html.js-ready .section.is-visible {
 
 .team-member {
   text-align: left;
-  /* JS側で制御するため、アニメーション用の設定はCSSから削除し、
-     スマホ・タブレットでも要素が常に表示されるようにします。 */
   opacity: 1;
   transform: none; 
 }
@@ -501,7 +499,7 @@ html.js-ready .section.is-visible {
 /* JS有効時、PCサイズではアニメーションを適用 */
 @media (min-width: 769px) {
   html.js-ready .section#team .team-member {
-    opacity: 0;
+    opacity: 0; /* PC/Tablet initial hidden state */
     transform: translateY(-10px);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   }
@@ -557,6 +555,21 @@ html.js-ready .section.is-visible {
 
   .team-member {
     margin-bottom: 28px;
+    text-align: center; /* ★修正: メンバー全体を中央寄せ */
+  }
+
+  /* ★修正: 画像のサイズ調整と中央寄せ */
+  .team-member img {
+    width: 65%;
+    max-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ★修正: テキストも中央寄せ */
+  .team-member h3,
+  .team-member p {
+    text-align: center;
   }
 }
 
