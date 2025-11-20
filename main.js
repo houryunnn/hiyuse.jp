@@ -158,7 +158,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // 数秒後に強制表示
       setTimeout(revealAllMembers, 8000);
     } else {
-      // ★ スマホ / タブレット：アニメなしで即表示
+      // ★ スマホ / タブレット：親セクションもメンバーもアニメなしで即表示
+      const teamSection = document.getElementById("team");
+      if (teamSection) {
+        // 親セクション（#team）に is-visible を付けて、全体を即座に表示
+        teamSection.classList.add("is-visible");
+      }
       revealAllMembers();
     }
   }
