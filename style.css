@@ -204,7 +204,7 @@ html.js-ready .section.is-visible {
 .copyright-rail {
   position: fixed;
   left: 16px;
-  top: 30%;
+  top: 70%;
   transform: translateY(-50%) rotate(-90deg);
   transform-origin: left center;
   font-size: 10px;
@@ -300,8 +300,8 @@ html.js-ready .section.is-visible {
 /* CLOSEボタン（右上） */
 .overlay-nav__close {
   position: absolute;
-  top: 18px; /* nav-trigger と同じ値に調整済み */
-  right: 18px; /* nav-trigger と同じ値に調整済み */
+  top: 19px; /* nav-trigger と同じ値に調整済み */
+  right: 14px; /* nav-trigger と同じ値に調整済み */
   border: none;
   background: none;
   cursor: pointer;
@@ -480,7 +480,7 @@ html.js-ready .section.is-visible {
 }
 
 /* =========================
-   TEAM（画像とテキストを完全に揃える）
+   TEAM（画像とテキストを揃える）
 ========================= */
 
 .team-grid {
