@@ -157,8 +157,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 数秒後に強制表示
       setTimeout(revealAllMembers, 8000);
-    } 
-    // ★ elseブロックを削除し、モバイル時は何もせず、
-    // セクション全体の表示は全体フェードインロジックに任せる
+    } else {
+      // ★ スマホ / タブレット：親セクションもメンバーもアニメなしで即表示
+      // これを再度追加することで、非表示になる問題を解消します。
+      const teamSection = document.getElementById("team");
+      if (teamSection) {
+        // 親セクション（#team）に is-visible を付けて、全体を即座に表示
+        teamSection.classList.add("is-visible");
+      }
+      revealAllMembers();
+    }
   }
 });
