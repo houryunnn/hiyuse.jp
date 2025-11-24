@@ -3,26 +3,70 @@ document.addEventListener("DOMContentLoaded", () => {
   document.documentElement.classList.add("js-ready");
 
   // ==============================
-  // HERO スライダー
+  // HERO スライダー（動画対応版）
   // ==============================
   const heroSlides = Array.from(document.querySelectorAll(".hero-bg__slide"));
   let heroIndex = 0;
-  const FAST_INTERVAL = 150; // パラパラ速度 ★修正
-  const NORMAL_INTERVAL = 5000; // 以降のゆっくり ★修正
-  const FAST_DURATION = 1500; // 何秒パラパラさせるか ★修正
+  const FAST_INTERVAL = 150; // パラパラ速度
+  const NORMAL_INTERVAL = 3000; // 以降のゆっくり
+  const FAST_DURATION = 1500; // 何秒パラパラさせるか
   let sliderTimer;
 
+  // スライドに含まれる video を制御するヘルパー
+  const playSlideVideo = (slide) => {
+    const video = slide.querySelector("video");
+    if (!video) return;
+    try {
+      video.currentTime = 0;   // 頭出し
+      video.play();            // 再生
+    } catch (e) {
+      // スマホなどで再生できない場合は黙って無視
+      console.warn("Video play error:", e);
+    }
+  };
+
+  const pauseSlideVideo = (slide) => {
+    const video = slide.querySelector("video");
+    if (!video) return;
+    try {
+      video.pause();           // 停止（ループさせない）
+    } catch (e) {
+      console.warn("Video pause error:", e);
+    }
+  };
+
+  // スライド切り替え共通処理
+  const switchToIndex = (nextIndex) => {
+    if (!heroSlides.length) return;
+
+    const currentSlide = heroSlides[heroIndex];
+    const nextSlide = heroSlides[nextIndex];
+
+    // いま表示中のスライドの動画を止める
+    pauseSlideVideo(currentSlide);
+
+    // クラス付け替え
+    currentSlide.classList.remove("is-active");
+    nextSlide.classList.add("is-active");
+
+    // 次のスライドの動画を頭から再生
+    playSlideVideo(nextSlide);
+
+    heroIndex = nextIndex;
+  };
+
   if (heroSlides.length > 1) {
+    // 最初の1枚目（is-active が付いているスライド）の動画を再生
+    playSlideVideo(heroSlides[heroIndex]);
+
     const switchFast = () => {
-      heroSlides[heroIndex].classList.remove("is-active");
-      heroIndex = (heroIndex + 1) % heroSlides.length;
-      heroSlides[heroIndex].classList.add("is-active");
+      const next = (heroIndex + 1) % heroSlides.length;
+      switchToIndex(next);
     };
 
     const switchNormal = () => {
-      heroSlides[heroIndex].classList.remove("is-active");
-      heroIndex = (heroIndex + 1) % heroSlides.length;
-      heroSlides[heroIndex].classList.add("is-active");
+      const next = (heroIndex + 1) % heroSlides.length;
+      switchToIndex(next);
     };
 
     // 最初：パラパラ
@@ -158,11 +202,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // 数秒後に強制表示
       setTimeout(revealAllMembers, 8000);
     } else {
-      // ★ スマホ / タブレット：親セクションもメンバーもアニメなしで即表示
-      // これを再度追加することで、非表示になる問題を解消します。
+      // スマホ / タブレット：親セクションもメンバーもアニメなしで即表示
       const teamSection = document.getElementById("team");
       if (teamSection) {
-        // 親セクション（#team）に is-visible を付けて、全体を即座に表示
         teamSection.classList.add("is-visible");
       }
       revealAllMembers();
