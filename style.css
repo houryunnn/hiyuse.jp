@@ -455,6 +455,27 @@ html.js-ready .section.is-visible {
     max-width: 220px;
   }
 }
+/* ▼ 動画スライド用 */
+.hero-bg__slide--video .hero-bg__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ▼ ロゴにドロップシャドウ */
+.hero-logo img {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.65));
+}
+
+/* ▼ 見出し/テキストにドロップシャドウ */
+.hero h1,
+.hero-kicker,
+.hero-text {
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8);
+}
+
 
 /* =========================
    ABOUT (画像追加用)
