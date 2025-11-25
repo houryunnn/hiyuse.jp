@@ -76,6 +76,13 @@ html.js-ready .section.is-visible {
   transform: translateY(0);
 }
 
+/* CONTACT だけは最初から表示してフェードインさせない */
+html.js-ready .section--contact {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 .section h2 {
   font-size: clamp(22px, 3vw, 28px);
   margin: 0 0 16px;
@@ -691,13 +698,27 @@ html.js-ready .section.is-visible {
    CONTACT
 ========================= */
 
-.section--contact {
+/* セクション全体を画面幅いっぱいの黒帯にする */
+.section.section--contact {
+  max-width: none;           /* 1080px制限を外す */
+  margin: 0;                 /* 中央寄せを解除 */
+  padding: 60px 0 40px;      /* 上下だけ余白。左右は 0 */
+  
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  width: 100vw;              /* 画面幅いっぱい */
+  
+  background: #0c1016;       /* 黒帯 */
+  color: #f5f5f5;
   text-align: center;
 }
 
+/* 中身は中央に寄せるコンテナ */
 .contact-inner {
   max-width: 780px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .section--contact h2 {
@@ -705,36 +726,34 @@ html.js-ready .section.is-visible {
   margin-bottom: 12px;
 }
 
+/* 上の説明文 */
 .contact-lead {
   margin: 0 0 28px;
-  color: #555;
+  color: #dddddd;
   font-size: 14px;
 }
 
-/* 黒帯（画面左右端まで） */
+/* カード本体は“箱”をやめて、余白だけにする */
 .contact-card {
-  background: #0c1016;
-  color: #f5f5f5;
-
-  width: 100vw;            /* ← 画面幅いっぱい */
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;      /* ← フル幅に */
-  padding: 32px 24px;
-
-  box-shadow: 0 0 0 transparent;   /* ドロップ影 */
-  border-radius: 0;                 /* 角丸 */
-  border: none;                     /* 枠 */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  color: inherit;
   text-align: center;
 }
 
-/* 横一列レイアウトは維持 */
+/* 横一列レイアウト */
 .contact-line {
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 18px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* PCは1行、スマホだけ自然に折れる */
   font-size: 16px;
   letter-spacing: 0.04em;
   line-height: 1.6;
@@ -748,7 +767,7 @@ html.js-ready .section.is-visible {
 
 .contact-line__mail {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 20px;   /* メール強調 */
   letter-spacing: 0.1em;
 }
 
@@ -757,12 +776,14 @@ html.js-ready .section.is-visible {
   opacity: 0.9;
 }
 
-/* ▼ スマホ（幅480px以下）でも黒帯が自然に見えるよう調整 */
+/* スマホ調整：幅いっぱいの黒帯のまま、少しコンパクトに */
 @media (max-width: 480px) {
+  .section.section--contact {
+    padding: 40px 0 30px;
+  }
 
-  .contact-card {
-    padding: 28px 20px;
-    margin-left: -50vw; /* ← 再計算し直さなくてもOK（フル幅維持） */
+  .contact-inner {
+    padding: 0 16px;
   }
 
   .contact-line {
@@ -771,6 +792,7 @@ html.js-ready .section.is-visible {
 
   .contact-line__mail {
     font-size: 18px;
+    letter-spacing: 0.08em;
   }
 }
 
