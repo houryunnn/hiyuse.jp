@@ -211,3 +211,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+// ==============================
+// HERO フェードアウト
+// ==============================
+const hero = document.querySelector(".hero");
+
+if (hero) {
+  const fadeHeroOnScroll = () => {
+    const scrollY = window.scrollY;
+    const fadeStart = 0;
+    const fadeEnd = window.innerHeight * 0.85; // 画面高さの%で完全に消える
+
+    let opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+    opacity = Math.max(0, Math.min(1, opacity)); // 0〜1に収める
+
+    hero.style.opacity = opacity;
+  };
+
+  window.addEventListener("scroll", () => {
+    requestAnimationFrame(fadeHeroOnScroll);
+  });
+}
