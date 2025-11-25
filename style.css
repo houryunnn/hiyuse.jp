@@ -695,7 +695,6 @@ html.js-ready .section.is-visible {
   text-align: center;
 }
 
-/* 全体の幅：他セクションとバランスを合わせる */
 .contact-inner {
   max-width: 780px;
   margin: 0 auto;
@@ -706,34 +705,36 @@ html.js-ready .section.is-visible {
   margin-bottom: 12px;
 }
 
-/* 上の説明文 */
 .contact-lead {
   margin: 0 0 28px;
   color: #555;
   font-size: 14px;
 }
 
-/* カード本体 */
+/* 黒帯（画面左右端まで） */
 .contact-card {
-  width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 24px 32px;
-  border-radius: 16px;  /* 丸すぎず、他カードとトーン合わせ */
-  border: 1px solid rgba(0, 0, 0, 0.06);
   background: #0c1016;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   color: #f5f5f5;
+
+  width: 100vw;            /* ← 画面幅いっぱい */
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;      /* ← フル幅に */
+  padding: 32px 24px;
+
+  box-shadow: 0 0 0 transparent;   /* ドロップ影 */
+  border-radius: 0;                 /* 角丸 */
+  border: none;                     /* 枠 */
   text-align: center;
 }
 
-/* 横一列レイアウト */
+/* 横一列レイアウトは維持 */
 .contact-line {
   display: flex;
   align-items: baseline;
   justify-content: center;
   gap: 18px;
-  flex-wrap: wrap; /* PCは1行、スマホだけ自然に折れる */
+  flex-wrap: wrap;
   font-size: 16px;
   letter-spacing: 0.04em;
   line-height: 1.6;
@@ -747,7 +748,7 @@ html.js-ready .section.is-visible {
 
 .contact-line__mail {
   font-weight: 600;
-  font-size: 20px;   /* メール強調 */
+  font-size: 20px;
   letter-spacing: 0.1em;
 }
 
@@ -756,22 +757,20 @@ html.js-ready .section.is-visible {
   opacity: 0.9;
 }
 
-/* スマホ調整：幅そのままで少しだけコンパクトに */
+/* ▼ スマホ（幅480px以下）でも黒帯が自然に見えるよう調整 */
 @media (max-width: 480px) {
+
   .contact-card {
-    max-width: none;
-    width: 100%;
-    border-radius: 18px;
-    padding: 20px 18px;
+    padding: 28px 20px;
+    margin-left: -50vw; /* ← 再計算し直さなくてもOK（フル幅維持） */
   }
 
   .contact-line {
-    justify-content: center;
     gap: 10px;
   }
 
   .contact-line__mail {
-    font-size: 17px;
-    letter-spacing: 0.08em;
+    font-size: 18px;
   }
 }
+
