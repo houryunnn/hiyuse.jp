@@ -615,7 +615,7 @@ html.js-ready .section--contact {
   transform: none; 
 }
 
-/* PC/タブレットでアニメーションを有効にするためのCSSを再定義 */
+/* PC/タブレットでアニメーションを有効にするためのCSSを定義 */
 /* JS有効時、PCサイズではアニメーションを適用 */
 @media (min-width: 769px) {
   html.js-ready .section#team .team-member {
@@ -698,11 +698,11 @@ html.js-ready .section--contact {
    CONTACT
 ========================= */
 
-/* セクション全体を画面幅いっぱいの黒帯にする */
+/* セクション全体を画面幅いっぱいの黒帯 */
 .section.section--contact {
-  max-width: none;           /* 1080px制限を外す */
-  margin: 0;                 /* 中央寄せを解除 */
-  padding: 60px 0 40px;      /* 上下だけ余白。左右は 0 */
+  max-width: none;           /* 制限なし */
+  margin: 0;                 /* 中央寄せ */
+  padding: 60px 0 120px;      /* 上下だけ余白。左右は 0 */
   
   position: relative;
   left: 50%;
@@ -733,7 +733,7 @@ html.js-ready .section--contact {
   font-size: 14px;
 }
 
-/* カード本体は“箱”をやめて、余白だけにする */
+/*  */
 .contact-card {
   width: 100%;
   max-width: none;
@@ -776,7 +776,7 @@ html.js-ready .section--contact {
   opacity: 0.9;
 }
 
-/* スマホ調整：幅いっぱいの黒帯のまま、少しコンパクトに */
+/* スマホ調整 */
 @media (max-width: 480px) {
   .section.section--contact {
     padding: 40px 0 30px;
