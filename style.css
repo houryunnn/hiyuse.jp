@@ -507,6 +507,14 @@ html.js-ready .section.is-visible {
 }
 
 
+/* ▼ スクロールでフェードアウト */
+.hero {
+  transition: opacity 0.1s linear;
+  will-change: opacity;
+}
+
+
+
 /* =========================
    ABOUT (画像追加用)
 ========================= */
